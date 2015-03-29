@@ -10,13 +10,15 @@
 
 @interface Dream : NSObject
 
-@property (nonatomic) int *dreamId;
+@property (nonatomic, strong) NSNumber *dreamId;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *slug;
 @property (nonatomic, strong) NSString *imageLink;
-@property (nonatomic) int *equipmentProgress;
-@property (nonatomic) int *financialProgress;
-@property (nonatomic) int *workProgress;
+@property (nonatomic, strong) NSNumber *equipmentProgress;
+@property (nonatomic, strong) NSNumber *financialProgress;
+@property (nonatomic, strong) NSNumber *workProgress;
+
+- (instancetype)initWithDictionary:(NSDictionary *)dict;
 
 
 @end
