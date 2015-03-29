@@ -15,6 +15,8 @@
 		180E5D3E1AAFA74700C5C4DC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 180E5D3D1AAFA74700C5C4DC /* Images.xcassets */; };
 		180E5D411AAFA74700C5C4DC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180E5D3F1AAFA74700C5C4DC /* LaunchScreen.xib */; };
 		180E5D4D1AAFA74700C5C4DC /* chedream_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E5D4C1AAFA74700C5C4DC /* chedream_iosTests.m */; };
+		182CB96E1AC872560087DA92 /* Dream.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CB96D1AC872560087DA92 /* Dream.m */; };
+		182CB9711AC882D80087DA92 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CB9701AC882D80087DA92 /* Author.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,10 @@
 		180E5D461AAFA74700C5C4DC /* chedream-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "chedream-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		180E5D4B1AAFA74700C5C4DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		180E5D4C1AAFA74700C5C4DC /* chedream_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = chedream_iosTests.m; sourceTree = "<group>"; };
+		182CB96C1AC872560087DA92 /* Dream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dream.h; sourceTree = "<group>"; };
+		182CB96D1AC872560087DA92 /* Dream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dream.m; sourceTree = "<group>"; };
+		182CB96F1AC882D80087DA92 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
+		182CB9701AC882D80087DA92 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,10 @@
 				180E5D3F1AAFA74700C5C4DC /* LaunchScreen.xib */,
 				180E5D341AAFA74600C5C4DC /* chedream_ios.xcdatamodeld */,
 				180E5D2D1AAFA74600C5C4DC /* Supporting Files */,
+				182CB96C1AC872560087DA92 /* Dream.h */,
+				182CB96D1AC872560087DA92 /* Dream.m */,
+				182CB96F1AC882D80087DA92 /* Author.h */,
+				182CB9701AC882D80087DA92 /* Author.m */,
 			);
 			path = "chedream-ios";
 			sourceTree = "<group>";
@@ -223,6 +233,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				180E5D331AAFA74600C5C4DC /* AppDelegate.m in Sources */,
+				182CB96E1AC872560087DA92 /* Dream.m in Sources */,
+				182CB9711AC882D80087DA92 /* Author.m in Sources */,
 				180E5D361AAFA74600C5C4DC /* chedream_ios.xcdatamodeld in Sources */,
 				180E5D391AAFA74600C5C4DC /* ViewController.m in Sources */,
 				180E5D301AAFA74600C5C4DC /* main.m in Sources */,
@@ -416,6 +428,7 @@
 				180E5D521AAFA74700C5C4DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		180E5D531AAFA74700C5C4DC /* Build configuration list for PBXNativeTarget "chedream-iosTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +437,7 @@
 				180E5D551AAFA74700C5C4DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
