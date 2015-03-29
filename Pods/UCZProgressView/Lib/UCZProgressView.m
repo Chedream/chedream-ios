@@ -12,6 +12,7 @@
 
 @property (nonatomic) CALayer *backgroundLayer;
 @property (nonatomic) CAShapeLayer *progressLayer;
+@property (nonatomic) CAShapeLayer *progressBackgroundLayer; //addad by tpx for gray background
 
 @end
 
@@ -44,6 +45,8 @@
     self.usesVibrancyEffect = YES;
     
     [self.backgroundLayer addSublayer:self.progressLayer];
+    [self.backgroundLayer addSublayer:self.progressBackgroundLayer]; //addad by tpx for gray background
+
     
     self.backgroundView = [self defaultBackgroundView];
     
@@ -61,6 +64,8 @@
     [path addArcWithCenter:self.backgroundView.center radius:self.radius + self.lineWidth / 2 startAngle:-M_PI_2 endAngle:M_PI + M_PI_2 clockwise:YES];
     
     self.progressLayer.path = path.CGPath;
+    self.progressBackgroundLayer.path = path.CGPath;  //addad by tpx for gray background
+
     
     [self layoutTextLabel];
 }
@@ -69,10 +74,25 @@
 
 - (UIView *)defaultBackgroundView {
     UIView *backgroundView = [[UIView alloc] init];
-    backgroundView.backgroundColor = [UIColor whiteColor];
+    backgroundView.backgroundColor = [UIColor clearColor]; // default white color
     
     return backgroundView;
 }
+
+- (CAShapeLayer *)progressBackgroundLayer {
+    // Almost same the progressLayer, but change fillColor you want
+    // and strokeEnd property is always 1.0 (Always draw circle)
+    if (!_progressBackgroundLayer) {
+        _progressBackgroundLayer = [CAShapeLayer layer];
+        _progressBackgroundLayer.fillColor = [UIColor clearColor].CGColor;
+        _progressBackgroundLayer.strokeColor = [UIColor colorWithRed: 220.0/255.0 green: 220.0/255.0 blue: 220.0/255.0 alpha:1.0].CGColor;
+        _progressBackgroundLayer.lineWidth = self.lineWidth;
+        _progressBackgroundLayer.strokeStart = 0.0;
+        _progressBackgroundLayer.strokeEnd = 1.0;
+    }
+    return _progressBackgroundLayer;
+} //addad by tpx for gray background
+
 
 - (void)setBackgroundView:(UIView *)backgroundView {
     if (_backgroundView.superview) {
