@@ -7,16 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Author.h"
 
 @interface Dream : NSObject
 
 @property (nonatomic, strong) NSNumber *dreamId;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *slug;
-@property (nonatomic, strong) NSString *imageLink;
+@property (nonatomic, strong) NSString *posterLink;
 @property (nonatomic, strong) NSNumber *equipmentProgress;
 @property (nonatomic, strong) NSNumber *financialProgress;
 @property (nonatomic, strong) NSNumber *workProgress;
+
+@property (nonatomic, strong) Author *dreamAuthor;
+@property (nonatomic, strong) NSString *dreamDescription;
+@property (nonatomic, strong) NSMutableArray *mediaPictures;
+
+@property (nonatomic, strong) NSMutableArray *equipmentResources;
+@property (nonatomic, strong) NSMutableArray *financialResources;
+@property (nonatomic, strong) NSMutableArray *workResources;
+
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
 

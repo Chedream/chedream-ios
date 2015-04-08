@@ -10,4 +10,17 @@
 
 @implementation Author
 
+- (instancetype)initWithDictionary:(NSDictionary *)dict {
+    if ((self = [super init])) {
+        self.username = dict[@"username"];
+        self.authorId = (int)dict[@"id"];
+        self.firstName = dict[@"first_name"];
+        self.lastName = dict[@"last_name"];
+        self.email = dict[@"email"];
+        self.imageLink = dict[@"avatar"][@"provider_reference"];
+    }
+    
+    return self;
+}
+
 @end

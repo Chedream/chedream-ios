@@ -16,6 +16,7 @@
 		180E5D4D1AAFA74700C5C4DC /* chedream_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E5D4C1AAFA74700C5C4DC /* chedream_iosTests.m */; };
 		182CB96E1AC872560087DA92 /* Dream.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CB96D1AC872560087DA92 /* Dream.m */; };
 		182CB9711AC882D80087DA92 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CB9701AC882D80087DA92 /* Author.m */; };
+		182CB9771AD5CA780087DA92 /* DreamResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CB9761AD5CA780087DA92 /* DreamResource.m */; };
 		30D3CA140E601F638ACBDD6D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A2CCAE4E7ABA608C04C44D9 /* libPods.a */; };
 		4EB46F181AD55AE7009E883F /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB46F171AD55AE7009E883F /* MenuTableViewController.m */; };
 		4EB46F1B1AD567E2009E883F /* MainViewCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB46F1A1AD567E2009E883F /* MainViewCollectionViewController.m */; };
@@ -58,6 +59,8 @@
 		182CB96D1AC872560087DA92 /* Dream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dream.m; sourceTree = "<group>"; };
 		182CB96F1AC882D80087DA92 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
 		182CB9701AC882D80087DA92 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
+		182CB9751AD5CA780087DA92 /* DreamResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DreamResource.h; path = "../../chedream-ios1/chedream-ios/DreamResource.h"; sourceTree = "<group>"; };
+		182CB9761AD5CA780087DA92 /* DreamResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DreamResource.m; path = "../../chedream-ios1/chedream-ios/DreamResource.m"; sourceTree = "<group>"; };
 		4EB46F161AD55AE7009E883F /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
 		4EB46F171AD55AE7009E883F /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
 		4EB46F191AD567E2009E883F /* MainViewCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewCollectionViewController.h; sourceTree = "<group>"; };
@@ -127,12 +130,17 @@
 				4EB46F281AD56A61009E883F /* TMP dream pic */,
 				180E5D311AAFA74600C5C4DC /* AppDelegate.h */,
 				180E5D321AAFA74600C5C4DC /* AppDelegate.m */,
+				180E5D3A1AAFA74700C5C4DC /* Main.storyboard */,
+				180E5D3D1AAFA74700C5C4DC /* Images.xcassets */,
+				180E5D3F1AAFA74700C5C4DC /* LaunchScreen.xib */,
 				180E5D341AAFA74600C5C4DC /* chedream_ios.xcdatamodeld */,
 				180E5D2D1AAFA74600C5C4DC /* Supporting Files */,
 				182CB96C1AC872560087DA92 /* Dream.h */,
 				182CB96D1AC872560087DA92 /* Dream.m */,
 				182CB96F1AC882D80087DA92 /* Author.h */,
 				182CB9701AC882D80087DA92 /* Author.m */,
+				182CB9751AD5CA780087DA92 /* DreamResource.h */,
+				182CB9761AD5CA780087DA92 /* DreamResource.m */,
 			);
 			path = "chedream-ios";
 			sourceTree = "<group>";
@@ -179,7 +187,6 @@
 		4EB46F291AD572C3009E883F /* ViewControlls */ = {
 			isa = PBXGroup;
 			children = (
-				180E5D3A1AAFA74700C5C4DC /* Main.storyboard */,
 				4EB46F161AD55AE7009E883F /* MenuTableViewController.h */,
 				4EB46F171AD55AE7009E883F /* MenuTableViewController.m */,
 				4EB46F191AD567E2009E883F /* MainViewCollectionViewController.h */,
@@ -192,8 +199,6 @@
 				4EB46F311AD575B2009E883F /* FAQViewController.m */,
 				4EB46F331AD57618009E883F /* ContactsViewController.h */,
 				4EB46F341AD57618009E883F /* ContactsViewController.m */,
-				180E5D3D1AAFA74700C5C4DC /* Images.xcassets */,
-				180E5D3F1AAFA74700C5C4DC /* LaunchScreen.xib */,
 			);
 			name = ViewControlls;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 				4EB46F181AD55AE7009E883F /* MenuTableViewController.m in Sources */,
 				180E5D301AAFA74600C5C4DC /* main.m in Sources */,
 				4EB46F2C1AD5753D009E883F /* DetailsViewController.m in Sources */,
+				182CB9771AD5CA780087DA92 /* DreamResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
