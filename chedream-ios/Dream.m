@@ -7,6 +7,7 @@
 //
 
 #import "Dream.h"
+#import "Author.h"
 
 @implementation Dream
 
@@ -15,7 +16,9 @@
         self.dreamId = dict[@"id"];
         self.title = dict[@"title"];
         self.slug = dict[@"slug"];
-        self.imageLink = [NSString stringWithFormat:@"%@%@", @"http://chedream.org/upload/media/poster/0001/01/", dict[@"media_poster"][@"provider_reference"]];
+        self.posterLink = [NSString stringWithFormat:@"%@%@", @"http://chedream.org/upload/media/poster/0001/01/", dict[@"media_poster"][@"provider_reference"]];
+        self.dreamAuthor = [[Author alloc] initWithDictionary:dict[@"author"]];
+        
     }
     
     return self;

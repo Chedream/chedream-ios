@@ -17,4 +17,6 @@
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *imageLink;
 
+- (instancetype)initWithDictionary:(NSDictionary *)dict;
+
 @end
