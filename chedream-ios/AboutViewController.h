@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  AboutViewController.h
 //  chedream-ios
 //
-//  Created by Andrews on 11.03.15.
+//  Created by core on 08.04.15.
 //  Copyright (c) 2015 Chedream. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface AboutViewController : UIViewController
 
 @end
-
