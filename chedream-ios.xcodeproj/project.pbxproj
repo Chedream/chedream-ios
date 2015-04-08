@@ -17,7 +17,6 @@
 		180E5D4D1AAFA74700C5C4DC /* chedream_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E5D4C1AAFA74700C5C4DC /* chedream_iosTests.m */; };
 		182CB96E1AC872560087DA92 /* Dream.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CB96D1AC872560087DA92 /* Dream.m */; };
 		182CB9711AC882D80087DA92 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CB9701AC882D80087DA92 /* Author.m */; };
-		182CB9741AC9AE560087DA92 /* DreamResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CB9731AC9AE560087DA92 /* DreamResource.m */; };
 		30D3CA140E601F638ACBDD6D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A2CCAE4E7ABA608C04C44D9 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -50,8 +49,6 @@
 		182CB96D1AC872560087DA92 /* Dream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dream.m; sourceTree = "<group>"; };
 		182CB96F1AC882D80087DA92 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
 		182CB9701AC882D80087DA92 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
-		182CB9721AC9AE560087DA92 /* DreamResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DreamResource.h; sourceTree = "<group>"; };
-		182CB9731AC9AE560087DA92 /* DreamResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DreamResource.m; sourceTree = "<group>"; };
 		6A2CCAE4E7ABA608C04C44D9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A0FEE94C13DDF126131C40 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D6487594306448CBA22D4012 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -112,8 +109,6 @@
 				182CB96D1AC872560087DA92 /* Dream.m */,
 				182CB96F1AC882D80087DA92 /* Author.h */,
 				182CB9701AC882D80087DA92 /* Author.m */,
-				182CB9721AC9AE560087DA92 /* DreamResource.h */,
-				182CB9731AC9AE560087DA92 /* DreamResource.m */,
 			);
 			path = "chedream-ios";
 			sourceTree = "<group>";
@@ -302,7 +297,6 @@
 				180E5D361AAFA74600C5C4DC /* chedream_ios.xcdatamodeld in Sources */,
 				180E5D391AAFA74600C5C4DC /* ViewController.m in Sources */,
 				180E5D301AAFA74600C5C4DC /* main.m in Sources */,
-				182CB9741AC9AE560087DA92 /* DreamResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
