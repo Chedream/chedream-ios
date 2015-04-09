@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AFHTTPRequestOperation.h"
 
 @interface MainViewCollectionViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
-{
-    NSArray *array;
-}
 
 @end

@@ -21,11 +21,6 @@
 		4EB46F181AD55AE7009E883F /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB46F171AD55AE7009E883F /* MenuTableViewController.m */; };
 		4EB46F1B1AD567E2009E883F /* MainViewCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB46F1A1AD567E2009E883F /* MainViewCollectionViewController.m */; };
 		4EB46F221AD56A58009E883F /* dream1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB46F1C1AD56A58009E883F /* dream1.png */; };
-		4EB46F231AD56A58009E883F /* dream2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB46F1D1AD56A58009E883F /* dream2.png */; };
-		4EB46F241AD56A58009E883F /* dream3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB46F1E1AD56A58009E883F /* dream3.png */; };
-		4EB46F251AD56A58009E883F /* dream4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB46F1F1AD56A58009E883F /* dream4.png */; };
-		4EB46F261AD56A58009E883F /* dream5.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB46F201AD56A58009E883F /* dream5.png */; };
-		4EB46F271AD56A58009E883F /* dream6.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB46F211AD56A58009E883F /* dream6.png */; };
 		4EB46F2C1AD5753D009E883F /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB46F2B1AD5753D009E883F /* DetailsViewController.m */; };
 		4EB46F2F1AD5757E009E883F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB46F2E1AD5757E009E883F /* AboutViewController.m */; };
 		4EB46F321AD575B2009E883F /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB46F311AD575B2009E883F /* FAQViewController.m */; };
@@ -66,11 +61,6 @@
 		4EB46F191AD567E2009E883F /* MainViewCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewCollectionViewController.h; sourceTree = "<group>"; };
 		4EB46F1A1AD567E2009E883F /* MainViewCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewCollectionViewController.m; sourceTree = "<group>"; };
 		4EB46F1C1AD56A58009E883F /* dream1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dream1.png; sourceTree = "<group>"; };
-		4EB46F1D1AD56A58009E883F /* dream2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dream2.png; sourceTree = "<group>"; };
-		4EB46F1E1AD56A58009E883F /* dream3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dream3.png; sourceTree = "<group>"; };
-		4EB46F1F1AD56A58009E883F /* dream4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dream4.png; sourceTree = "<group>"; };
-		4EB46F201AD56A58009E883F /* dream5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dream5.png; sourceTree = "<group>"; };
-		4EB46F211AD56A58009E883F /* dream6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dream6.png; sourceTree = "<group>"; };
 		4EB46F2A1AD5753D009E883F /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		4EB46F2B1AD5753D009E883F /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		4EB46F2D1AD5757E009E883F /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -175,11 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				4EB46F1C1AD56A58009E883F /* dream1.png */,
-				4EB46F1D1AD56A58009E883F /* dream2.png */,
-				4EB46F1E1AD56A58009E883F /* dream3.png */,
-				4EB46F1F1AD56A58009E883F /* dream4.png */,
-				4EB46F201AD56A58009E883F /* dream5.png */,
-				4EB46F211AD56A58009E883F /* dream6.png */,
 			);
 			name = "TMP dream pic";
 			sourceTree = "<group>";
@@ -303,14 +288,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				180E5D3C1AAFA74700C5C4DC /* Main.storyboard in Resources */,
-				4EB46F231AD56A58009E883F /* dream2.png in Resources */,
 				180E5D411AAFA74700C5C4DC /* LaunchScreen.xib in Resources */,
-				4EB46F261AD56A58009E883F /* dream5.png in Resources */,
-				4EB46F251AD56A58009E883F /* dream4.png in Resources */,
 				180E5D3E1AAFA74700C5C4DC /* Images.xcassets in Resources */,
 				4EB46F221AD56A58009E883F /* dream1.png in Resources */,
-				4EB46F241AD56A58009E883F /* dream3.png in Resources */,
-				4EB46F271AD56A58009E883F /* dream6.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,8 +7,12 @@
 //
 
 #import "MainViewCollectionViewController.h"
+#import <AFHTTPRequestOperationManager.h>
+#import "Dream.h"
 
-@interface MainViewCollectionViewController ()
+@interface MainViewCollectionViewController () {
+    NSMutableArray *dreams;
+}
 
 @end
 
@@ -19,17 +23,10 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    dreams = [NSMutableArray array];
     
-    array = [[NSArray alloc]initWithObjects:
-             @"dream1.png",
-             @"dream2.png",
-             @"dream3.png",
-             @"dream4.png",
-             @"dream5.png",
-             @"dream6.png",
-             nil];
-    
-    
+    [self getDreams];
+
     
     // Do any additional setup after loading the view.
     
@@ -45,6 +42,34 @@ static NSString * const reuseIdentifier = @"Cell";
     
 }
 
+- (void)getDreams{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://api.chedream.org/dreams.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"JSON: %@", responseObject);
+        [self parseDreams:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+- (void)parseDreams:(id) responseObject{
+    NSDictionary *dreamsJson = (NSDictionary *) responseObject;
+    if (!dreamsJson) {
+        //todo set status with error
+        return;
+    }
+    NSDictionary *dreamsArray = dreamsJson[@"dreams"];
+    for (NSDictionary *iCountryDict in dreamsArray) {
+        if (!iCountryDict) {
+            break;
+        }
+        
+        [dreams addObject:[[Dream alloc] initWithDictionary:iCountryDict]];
+    }
+    [self.collectionView reloadData];
+
+}
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -52,7 +77,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return array.count;
+    return dreams.count;
 }
 
 
@@ -60,9 +85,13 @@ static NSString * const reuseIdentifier = @"Cell";
     static NSString *identifier = @"dreamCell";
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    Dream *dreamByIndex = dreams[indexPath.row];
     
     UIImageView *dreamImageView = (UIImageView *)[cell viewWithTag:100];
-    dreamImageView.image = [UIImage imageNamed:[array objectAtIndex:indexPath.row]];
+    dreamImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:dreamByIndex.posterLink]]];
+    
+    UILabel *dreamTitle = (UILabel *)[cell viewWithTag:2];
+    dreamTitle.text = [dreamByIndex title];
     
     return cell;
 }
