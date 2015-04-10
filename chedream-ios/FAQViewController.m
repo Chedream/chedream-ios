@@ -24,6 +24,15 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (IBAction)onMenuTap:(id)sender {
+    if (self.isOpened) {
+        [self.slidingViewController resetTopViewAnimated:YES];
+    }else{
+        [self.slidingViewController anchorTopViewToRightAnimated:YES];
+    }
+    self.isOpened = !self.isOpened;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

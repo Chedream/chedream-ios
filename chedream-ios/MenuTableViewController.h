@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuTableViewController : UITableViewController
-- (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue;
 
 @end

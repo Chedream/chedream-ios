@@ -7,18 +7,32 @@
 //
 
 #import "MainViewCollectionViewController.h"
+#import "UIViewController+ECSlidingViewController.h"
 #import <AFHTTPRequestOperationManager.h>
 #import "Dream.h"
+
 
 @interface MainViewCollectionViewController () {
     NSMutableArray *dreams;
 }
+@property (nonatomic, assign) BOOL isOpened;
+- (IBAction)onMenuTap:(id)sender;
 
 @end
+
 
 @implementation MainViewCollectionViewController
 
 static NSString * const reuseIdentifier = @"Cell";
+
+- (IBAction)onMenuTap:(id)sender {
+    if (self.isOpened) {
+        [self.slidingViewController resetTopViewAnimated:YES];
+    }else{
+        [self.slidingViewController anchorTopViewToRightAnimated:YES];
+    }
+    self.isOpened = !self.isOpened;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,20 +40,6 @@ static NSString * const reuseIdentifier = @"Cell";
     dreams = [NSMutableArray array];
     
     [self getDreams];
-
-    
-    // Do any additional setup after loading the view.
-    
-    // Create your image
-    //    UIImage *image = [UIImage imageNamed: @"icon_logo.png"];
-    //    UIImageView *imageview = [[UIImageView alloc] initWithImage: image];
-    //
-    //    // set the text view to the image view
-    //    self.navigationItem.titleView = imageview;
-    
-    //
-    //     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"icon_logo.png"] forBarMetrics:UIBarMetricsDefault];
-    
 }
 
 - (void)getDreams{
