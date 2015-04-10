@@ -2,7 +2,7 @@
 //  DreamResource.m
 //  chedream-ios
 //
-//  Created by Andrews on 30.03.15.
+//  Created by core on 10.04.15.
 //  Copyright (c) 2015 Chedream. All rights reserved.
 //
 
@@ -22,3 +22,4 @@
 }
 
 @end
+
