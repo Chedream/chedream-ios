@@ -173,14 +173,13 @@
                     <navigationItem key="navigationItem" id="dFf-hD-UhN">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="2YD-fM-nSq">
                             <connections>
-                                <segue destination="bWG-li-xBj" kind="unwind" unwindAction="unwindToMenuViewController:" id="WAz-oG-K7d"/>
+                                <action selector="onMenuTap:" destination="GDw-6b-mNm" id="fMs-u9-vE2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdv-wr-H1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="bWG-li-xBj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1878" y="668"/>
         </scene>
@@ -208,14 +207,13 @@
                     <navigationItem key="navigationItem" id="tOz-9N-XHD">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="sef-CY-oFc">
                             <connections>
-                                <segue destination="eK8-GR-B8H" kind="unwind" unwindAction="unwindToMenuViewController:" id="I8Y-WU-H0e"/>
+                                <action selector="onMenuTap:" destination="nBU-DG-1FH" id="Qcu-c3-RA7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adi-p5-Jjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="eK8-GR-B8H" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1878" y="1279"/>
         </scene>
@@ -235,14 +233,13 @@
                     <navigationItem key="navigationItem" id="3yb-lD-HMC">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="AG2-qv-IeB">
                             <connections>
-                                <segue destination="izu-XW-Od8" kind="unwind" unwindAction="unwindToMenuViewController:" id="zdr-1m-E6N"/>
+                                <action selector="onMenuTap:" destination="8PC-5h-NzB" id="4cw-5r-ECD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZV-xj-NZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="izu-XW-Od8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1878" y="1867"/>
         </scene>
@@ -274,6 +271,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="cb9-fg-Zvh">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="hnw-yG-Lqh">
+                            <connections>
+                                <action selector="onMenuTap:" destination="TZr-NZ-nZ2" id="SkK-yI-Bwd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
@@ -329,10 +331,17 @@
                                                 <constraint firstAttribute="width" secondItem="AkZ-mB-a9g" secondAttribute="height" multiplier="75:56" id="ZQw-fg-s2t"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qtr-N5-CI2">
-                                            <rect key="frame" x="8" y="115" width="134" height="57"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qtr-N5-CI2">
+                                            <rect key="frame" x="8" y="95" width="134" height="41"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="Label">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -342,6 +351,10 @@
                                 <constraints>
                                     <constraint firstItem="AkZ-mB-a9g" firstAttribute="top" secondItem="uoR-5v-D3v" secondAttribute="topMargin" constant="-19" id="EyG-Uw-kB8"/>
                                     <constraint firstItem="AkZ-mB-a9g" firstAttribute="leading" secondItem="uoR-5v-D3v" secondAttribute="leadingMargin" constant="-8" id="Kyk-mu-SRL"/>
+                                    <constraint firstItem="Qtr-N5-CI2" firstAttribute="top" secondItem="uoR-5v-D3v" secondAttribute="topMargin" constant="87" id="LzO-wP-c5B"/>
+                                    <constraint firstItem="Qtr-N5-CI2" firstAttribute="leading" secondItem="uoR-5v-D3v" secondAttribute="leadingMargin" id="QhF-Cq-dJB"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Qtr-N5-CI2" secondAttribute="bottom" constant="36" id="Tap-Q0-rTb"/>
+                                    <constraint firstItem="Qtr-N5-CI2" firstAttribute="trailing" secondItem="uoR-5v-D3v" secondAttribute="trailingMargin" id="uLb-J5-u0P"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="AkZ-mB-a9g" secondAttribute="trailing" constant="-8" id="xh0-1R-NXe"/>
                                 </constraints>
                                 <size key="customSize" width="150" height="180"/>
@@ -359,7 +372,7 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="menu" id="HTa-Li-Ff5">
                             <connections>
-                                <segue destination="jt0-PP-dj5" kind="unwind" unwindAction="unwindToMenuViewController:" id="K5S-Cc-R5g"/>
+                                <action selector="onMenuTap:" destination="3pe-O1-1IC" id="A1p-NI-lr4"/>
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="ooI-hj-QTr">
@@ -377,7 +390,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TIU-bQ-KVn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="jt0-PP-dj5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1878" y="55"/>
         </scene>

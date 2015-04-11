@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
+#import "UIViewController+ECSlidingViewController.h"
 
 @interface FAQViewController : UITableViewController
+@property (nonatomic, assign) BOOL isOpened;
+- (IBAction)onMenuTap:(id)sender;
 
 @end
