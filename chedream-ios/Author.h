@@ -19,4 +19,6 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
 
+- (NSString *)authorFullName;
+
 @end

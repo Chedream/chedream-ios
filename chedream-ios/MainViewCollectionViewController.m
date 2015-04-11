@@ -7,6 +7,7 @@
 //
 
 #import "MainViewCollectionViewController.h"
+#import "DetailsViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
 #import <AFHTTPRequestOperationManager.h>
 #import "Dream.h"
@@ -67,7 +68,6 @@ static NSString * const reuseIdentifier = @"Cell";
         [dreams addObject:[[Dream alloc] initWithDictionary:iCountryDict]];
     }
     [self.collectionView reloadData];
-
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -107,6 +107,14 @@ static NSString * const reuseIdentifier = @"Cell";
     return CGSizeMake(CGRectGetWidth(collectionView.frame)/2 -1, CGRectGetWidth(collectionView.frame)* 0.60-1);
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showDreamDetails"]) {
+        NSIndexPath *indexPath = [[self.collectionView indexPathsForSelectedItems] objectAtIndex:0];
+        DetailsViewController *destViewController = segue.destinationViewController;
+//        destViewController.selectedRowSlug = [[dreams objectAtIndex:indexPath.row] slug] ;
+        destViewController.currentDream = [dreams objectAtIndex:indexPath.row];
+    }
+}
 
 /*
  #pragma mark - Navigation

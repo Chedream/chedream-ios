@@ -23,4 +23,8 @@
     return self;
 }
 
+- (NSString *)authorFullName {
+    return [NSString stringWithFormat:@"%@%@%@", _firstName, @" ", _lastName];
+}
+
 @end

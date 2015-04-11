@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sMh-Sh-XQe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sMh-Sh-XQe">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -251,7 +251,7 @@
                         <viewControllerLayoutGuide type="top" id="Pqu-XZ-goq"/>
                         <viewControllerLayoutGuide type="bottom" id="urD-DW-DmJ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5Rt-qU-XQW">
+                    <view key="view" contentMode="scaleToFill" id="5Rt-qU-XQW" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -259,8 +259,32 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="231"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jor-su-CJX" secondAttribute="height" multiplier="320:231" id="36Y-Ti-oiS"/>
+                                    <constraint firstAttribute="width" constant="320" id="z6z-F5-TaY"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ujG-pZ-K8D">
+                                <rect key="frame" x="16" y="211" width="62" height="68"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nickname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aok-gx-IQS">
+                                <rect key="frame" x="86" y="239" width="210" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nq-Mt-Okp">
+                                <rect key="frame" x="16" y="276" width="288" height="59"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFy-cH-ujO">
+                                <rect key="frame" x="16" y="343" width="288" height="65"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -278,6 +302,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="authorName" destination="Aok-gx-IQS" id="SPg-aN-r6S"/>
+                        <outlet property="autorAvatar" destination="ujG-pZ-K8D" id="NHL-bG-1gI"/>
+                        <outlet property="dreamDescription" destination="PFy-cH-ujO" id="rfI-1j-3oX"/>
+                        <outlet property="dreamPoster" destination="jor-su-CJX" id="Rni-2d-dWk"/>
+                        <outlet property="dreamTitle" destination="0Nq-Mt-Okp" id="arp-Z5-tw8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vjj-cY-708" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -359,7 +390,7 @@
                                 </constraints>
                                 <size key="customSize" width="150" height="180"/>
                                 <connections>
-                                    <segue destination="TZr-NZ-nZ2" kind="push" id="X32-o0-7M1"/>
+                                    <segue destination="TZr-NZ-nZ2" kind="push" identifier="showDreamDetails" id="X32-o0-7M1"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
