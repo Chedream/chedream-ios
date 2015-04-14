@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "Dream.h"
 
 @interface DetailsViewController : BaseViewController
+
+@property (nonatomic, strong) Dream *currentDream;
+@property (nonatomic, strong) NSString *selectedRowSlug;
 
 @end

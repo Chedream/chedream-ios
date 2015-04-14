@@ -27,6 +27,10 @@
 @property (nonatomic, strong) NSMutableArray *financialResources;
 @property (nonatomic, strong) NSMutableArray *workResources;
 
+@property (nonatomic, strong) NSMutableArray *equipmentContributions;
+@property (nonatomic, strong) NSMutableArray *financialContributions;
+@property (nonatomic, strong) NSMutableArray *workContributions;
+
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
 
