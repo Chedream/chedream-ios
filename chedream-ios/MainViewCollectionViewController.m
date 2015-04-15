@@ -11,6 +11,7 @@
 #import "UIViewController+ECSlidingViewController.h"
 #import <AFHTTPRequestOperationManager.h>
 #import "Dream.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 
 @interface MainViewCollectionViewController () {
@@ -88,7 +89,9 @@ static NSString * const reuseIdentifier = @"Cell";
     Dream *dreamByIndex = dreams[indexPath.row];
     
     UIImageView *dreamImageView = (UIImageView *)[cell viewWithTag:100];
-    dreamImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:dreamByIndex.posterLink]]];
+//    dreamImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:dreamByIndex.posterLink]]];
+    [dreamImageView sd_setImageWithURL:[NSURL URLWithString:dreamByIndex.posterLink]
+                      placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
     UILabel *dreamTitle = (UILabel *)[cell viewWithTag:2];
     dreamTitle.text = [dreamByIndex title];

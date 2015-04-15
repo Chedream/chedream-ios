@@ -9,6 +9,7 @@
 #import "DetailsViewController.h"
 #import <AFHTTPRequestOperationManager.h>
 #import "Dream.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 
 @interface DetailsViewController ()
@@ -53,7 +54,9 @@
 }
 
 - (void)setDataToView {
-    _dreamPoster.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_currentDream.posterLink]]];
+//    _dreamPoster.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_currentDream.posterLink]]];
+    [_dreamPoster sd_setImageWithURL:[NSURL URLWithString:_currentDream.posterLink]
+                      placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     _authorName.text = [_currentDream.dreamAuthor authorFullName];
     _dreamTitle.text = _currentDream.title;
     _dreamDescription.attributedText = [[NSAttributedString alloc]

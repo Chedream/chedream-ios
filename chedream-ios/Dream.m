@@ -16,15 +16,20 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict {
     if ((self = [super init])) {
-        self.dreamId = dict[@"id"];
-        self.title = dict[@"title"];
-        self.slug = dict[@"slug"];
-        self.posterLink = [NSString stringWithFormat:@"%@%@", @"http://chedream.org/upload/media/poster/0001/01/", dict[@"media_poster"][@"provider_reference"]];
+        NSDictionary *dream = dict[@"dream"];
+        self.financialProgress = dict[@"dream_financial_progress"];
+        self.equipmentProgress = dict[@"dream_equipment_progress"];
+        self.workProgress = dict[@"dream_work_progress"];
+
+        self.dreamId = dream[@"id"];
+        self.title = dream[@"title"];
+        self.slug = dream[@"slug"];
+        self.posterLink = [NSString stringWithFormat:@"%@%@", @"http://chedream.org/upload/media/poster/0001/01/", dream[@"media_poster"][@"provider_reference"]];
         
-        self.dreamAuthor = [[Author alloc] initWithDictionary:dict[@"author"]];
-        self.dreamDescription = dict[@"description"];
+        self.dreamAuthor = [[Author alloc] initWithDictionary:dream[@"author"]];
+        self.dreamDescription = dream[@"description"];
         
-        NSDictionary *financialResourcesArray = dict[@"dream_financial_resources"];
+        NSDictionary *financialResourcesArray = dream[@"dream_financial_resources"];
         if (financialResourcesArray.count > 0) {
             self.financialResources = [NSMutableArray array];
             for (NSDictionary *financialResource in financialResourcesArray) {
@@ -35,7 +40,7 @@
             }
         }
         
-        NSDictionary *equipmentResourcesArray = dict[@"dream_equipment_resources"];
+        NSDictionary *equipmentResourcesArray = dream[@"dream_equipment_resources"];
         if (equipmentResourcesArray.count > 0) {
             self.equipmentResources = [NSMutableArray array];
             for (NSDictionary *equipmentResource in equipmentResourcesArray) {
@@ -46,7 +51,7 @@
             }
         }
         
-        NSDictionary *workResourcesArray = dict[@"dream_work_resources"];
+        NSDictionary *workResourcesArray = dream[@"dream_work_resources"];
         if (workResourcesArray.count > 0) {
             self.workResources = [NSMutableArray array];
             for (NSDictionary *workResource in workResourcesArray) {
@@ -57,7 +62,7 @@
             }
         }
         
-        NSDictionary *financialContributionsArray = dict[@"dream_financial_contributions"];
+        NSDictionary *financialContributionsArray = dream[@"dream_financial_contributions"];
         if (financialContributionsArray.count > 0) {
             self.financialContributions = [NSMutableArray array];
             for (NSDictionary *financialContribution in financialContributionsArray) {
@@ -68,7 +73,7 @@
             }
         }
         
-        NSDictionary *equipmentContributionsArray = dict[@"dream_equipment_contributions"];
+        NSDictionary *equipmentContributionsArray = dream[@"dream_equipment_contributions"];
         if (equipmentContributionsArray.count > 0) {
             self.equipmentContributions = [NSMutableArray array];
             for (NSDictionary *equipmentContribution in equipmentContributionsArray) {
@@ -79,7 +84,7 @@
             }
         }
         
-        NSDictionary *workContributionsArray = dict[@"dream_work_contributions"];
+        NSDictionary *workContributionsArray = dream[@"dream_work_contributions"];
         if (workContributionsArray.count > 0) {
             self.workContributions = [NSMutableArray array];
             for (NSDictionary *workContribution in workContributionsArray) {
