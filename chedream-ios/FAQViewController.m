@@ -8,9 +8,14 @@
 
 #import "FAQViewController.h"
 
+static CGFloat expandedHeight = 300.0;
+static CGFloat contractedHeight = 44.0;
+
+
 @interface FAQViewController () {
     NSMutableArray *items;
 }
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -29,10 +34,7 @@
              @"help",
              @"how",
              @"than what", nil];
-    
-    NSLog(@"%@", items);
-
-}
+    }
 
 - (IBAction)onMenuTap:(id)sender {
     if (self.isOpened) {
@@ -43,10 +45,7 @@
     self.isOpened = !self.isOpened;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 #pragma mark - Table view data source
 
@@ -60,22 +59,59 @@
     return items.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"faqCell" forIndexPath:indexPath];
     
     // Configure the cell...
+    cell.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    cell.clipsToBounds = YES;
     
     cell.textLabel.text = [items objectAtIndex:indexPath.row];
+    
     
     return cell;
 }
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+#pragma cellExpanding
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([tableView indexPathsForSelectedRows].count) {
+        
+        if ([[tableView indexPathsForSelectedRows] indexOfObject:indexPath] != NSNotFound) {
+            return expandedHeight; // Expanded height
+        }
+        
+        return contractedHeight; // Normal height
+    }
     
+    return contractedHeight; // Normal height
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self updateTableView];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self updateTableView];
     
 }
+
+- (void)updateTableView
+{
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+}
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+
 
 
 #pragma - selected cell color
@@ -86,9 +122,11 @@
     bgColorView.backgroundColor = [UIColor colorWithRed:252.0f/255.0f green:176.0f/255.0f blue:64.0f/255.0f alpha:1.0f];
     [cell setSelectedBackgroundView:bgColorView];
     
+    // remove section heder
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
 }
+
 
 
 /*
