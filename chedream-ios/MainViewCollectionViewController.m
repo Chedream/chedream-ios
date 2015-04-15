@@ -26,6 +26,14 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    layout.itemSize = CGSizeMake(160, 180);
+    
+    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+}
+
 - (IBAction)onMenuTap:(id)sender {
     if (self.isOpened) {
         [self.slidingViewController resetTopViewAnimated:YES];
@@ -96,12 +104,6 @@ static NSString * const reuseIdentifier = @"Cell";
     return cell;
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-    layout.itemSize = CGSizeMake(160, 180);
-    
-}
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(CGRectGetWidth(collectionView.frame)/2 -1, CGRectGetWidth(collectionView.frame)* 0.60-1);

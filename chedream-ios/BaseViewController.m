@@ -15,6 +15,11 @@
 
 @implementation BaseViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
