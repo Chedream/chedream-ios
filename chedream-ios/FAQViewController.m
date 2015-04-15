@@ -8,7 +8,9 @@
 
 #import "FAQViewController.h"
 
-@interface FAQViewController ()
+@interface FAQViewController () {
+    NSMutableArray *items;
+}
 
 @end
 
@@ -21,12 +23,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    items = [[NSMutableArray alloc] initWithObjects:
+             @"dreams",
+             @"make",
+             @"help",
+             @"how",
+             @"than what", nil];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSLog(@"%@", items);
+
 }
 
 - (IBAction)onMenuTap:(id)sender {
@@ -52,7 +57,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 5;
+    return items.count;
 }
 
 
@@ -61,9 +66,28 @@
     
     // Configure the cell...
     
-    cell.textLabel.text = @"cell title";
+    cell.textLabel.text = [items objectAtIndex:indexPath.row];
     
     return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+}
+
+
+#pragma - selected cell color
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [UIColor colorWithRed:252.0f/255.0f green:176.0f/255.0f blue:64.0f/255.0f alpha:1.0f];
+    [cell setSelectedBackgroundView:bgColorView];
+    
+    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
 }
 
 
