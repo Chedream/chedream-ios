@@ -24,18 +24,23 @@ PODS:
   - MagicalRecord (2.2):
     - MagicalRecord/Core (= 2.2)
   - MagicalRecord/Core (2.2)
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
   - UCZProgressView (1.0.1)
 
 DEPENDENCIES:
   - AFNetworking
   - ECSlidingViewController (~> 2.0.3)
   - MagicalRecord
+  - SDWebImage (~> 3.6)
   - UCZProgressView
 
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
   ECSlidingViewController: 6485c14f23b4487e9946535421ca8f111f86cc53
   MagicalRecord: f8a56bb87ab6552f20c4bb8681a1958a197ea3cd
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   UCZProgressView: 32fa5c572ff1300bf22553c8286600d9ae42f50f
 
 COCOAPODS: 0.35.0

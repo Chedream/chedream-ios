@@ -7,7 +7,7 @@ pod 'MagicalRecord'
 pod 'UCZProgressView'
 platform :ios, '7.0'
 pod 'ECSlidingViewController', '~> 2.0.3'
-
+pod 'SDWebImage', '~>3.6'
 target 'chedream-ios' do
 
 end
