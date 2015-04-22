@@ -12,10 +12,11 @@ static CGFloat expandedHeight = 300.0;
 static CGFloat contractedHeight = 44.0;
 
 
-@interface FAQViewController () {
-    NSMutableArray *items;
-}
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@interface FAQViewController ()
+@property (nonatomic, strong) NSMutableArray *faqTitlesArray;
+@property (nonatomic, strong) NSMutableArray *faqTextArray;
+
+//@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -28,12 +29,20 @@ static CGFloat contractedHeight = 44.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    items = [[NSMutableArray alloc] initWithObjects:
-             @"dreams",
-             @"make",
-             @"help",
-             @"how",
-             @"than what", nil];
+    self.faqTitlesArray = [[NSMutableArray alloc] initWithObjects:
+                           @"dreams",
+                           @"make",
+                           @"help",
+                           @"how",
+                           @"than what", nil];
+    
+    self.faqTextArray = [[NSMutableArray alloc] initWithObjects:
+                           @"dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds fds fds fdsfdsfdsfsdfsdffsd   fdsfsdf fdsfsdfsdf",
+                           @"make details details details details details details details details dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds",
+                           @"help details details details details details details details dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fds ",
+                           @"how details details details details details details details details dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds fds dreams details details details details details details details details sdgsg sdgsdgsdgsd  ",
+                           @"than what details details details details details details dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds fds  ", nil];
+    
     }
 
 - (IBAction)onMenuTap:(id)sender {
@@ -47,7 +56,7 @@ static CGFloat contractedHeight = 44.0;
 
 
 
-#pragma mark - Table view data source
+#pragma mark - TableМiew data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   
@@ -56,19 +65,17 @@ static CGFloat contractedHeight = 44.0;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return items.count;
+    return self.faqTitlesArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"faqCell" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    cell.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    cell.clipsToBounds = YES;
-    
-    cell.textLabel.text = [items objectAtIndex:indexPath.row];
-    
-    
+    FaqTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"faqCell" forIndexPath:indexPath];
+    NSString *stringWithSimbol = [ NSString stringWithFormat:@"• %@",[self.faqTitlesArray objectAtIndex:indexPath.row]];
+    cell.faqTitle.text = stringWithSimbol;
+    cell.faqText.text = [self.faqTextArray objectAtIndex:indexPath.row];
+    cell.faqText.textColor = [UIColor blackColor];
+    cell.faqTitle.highlightedTextColor = [UIColor orangeColor];
+
     return cell;
 }
 
@@ -81,7 +88,10 @@ static CGFloat contractedHeight = 44.0;
     if ([tableView indexPathsForSelectedRows].count) {
         
         if ([[tableView indexPathsForSelectedRows] indexOfObject:indexPath] != NSNotFound) {
-            return expandedHeight; // Expanded height
+            
+            NSString * yourText = self.faqTextArray[indexPath.row]; // or however you are getting the text
+            return 44.0f + [self heightForText:yourText];
+           // return expandedHeight; // Expanded height
         }
         
         return contractedHeight; // Normal height
@@ -90,9 +100,23 @@ static CGFloat contractedHeight = 44.0;
     return contractedHeight; // Normal height
 }
 
+#pragma get size of content for cell height
+
+-(CGFloat)heightForText:(NSString *)text
+{
+    NSInteger MAX_HEIGHT = 2000;
+    UITextView * textView = [[UITextView alloc] initWithFrame: CGRectMake(0, 0, 320, MAX_HEIGHT)];
+    textView.text = text;
+    textView.font = [UIFont boldSystemFontOfSize:13];
+    [textView sizeToFit];
+    return textView.frame.size.height;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self updateTableView];
+
+    
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,74 +127,26 @@ static CGFloat contractedHeight = 44.0;
 
 - (void)updateTableView
 {
+    [UIView setAnimationsEnabled:NO];
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
-}
-
--(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    
+    [UIView setAnimationsEnabled:YES];
 }
 
 
 
-
-#pragma - selected cell color
+#pragma - selected cell background color
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UIView *bgColorView = [[UIView alloc] init];
-    bgColorView.backgroundColor = [UIColor colorWithRed:252.0f/255.0f green:176.0f/255.0f blue:64.0f/255.0f alpha:1.0f];
-    [cell setSelectedBackgroundView:bgColorView];
-    
+//    UIView *bgColorView = [[UIView alloc] init];
+//    bgColorView.backgroundColor = [UIColor whiteColor];
+//    //[UIColor colorWithRed:252.0f/255.0f green:176.0f/255.0f blue:64.0f/255.0f alpha:1.0f];
+//    [cell setSelectedBackgroundView:bgColorView];
+//    
     // remove section heder
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
 }
-
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
