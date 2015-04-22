@@ -29,6 +29,8 @@ static CGFloat contractedHeight = 44.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+// addObjects for FAQTableViewCell Title here
     self.faqTitlesArray = [[NSMutableArray alloc] initWithObjects:
                            @"dreams",
                            @"make",
@@ -36,6 +38,7 @@ static CGFloat contractedHeight = 44.0;
                            @"how",
                            @"than what", nil];
     
+// addObjects for FAQTableViewCell details here
     self.faqTextArray = [[NSMutableArray alloc] initWithObjects:
                            @"dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds fds fds fdsfdsfdsfsdfsdffsd   fdsfsdf fdsfsdfsdf",
                            @"make details details details details details details details details dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds",
@@ -107,7 +110,7 @@ static CGFloat contractedHeight = 44.0;
     NSInteger MAX_HEIGHT = 2000;
     UITextView * textView = [[UITextView alloc] initWithFrame: CGRectMake(0, 0, 320, MAX_HEIGHT)];
     textView.text = text;
-    textView.font = [UIFont boldSystemFontOfSize:13];
+    textView.font = [UIFont systemFontOfSize:13];
     [textView sizeToFit];
     return textView.frame.size.height;
 }
@@ -144,6 +147,8 @@ static CGFloat contractedHeight = 44.0;
 //    //[UIColor colorWithRed:252.0f/255.0f green:176.0f/255.0f blue:64.0f/255.0f alpha:1.0f];
 //    [cell setSelectedBackgroundView:bgColorView];
 //    
+    
+    
     // remove section heder
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
