@@ -19,8 +19,10 @@
 @interface MainViewCollectionViewController () {
     NSMutableArray *dreams;
 }
+
 @property (nonatomic, assign) BOOL isOpened;
 @property (nonatomic,assign,readwrite) BOOL isServerReachable;
+
 - (IBAction)onMenuTap:(id)sender;
 
 @end
@@ -53,7 +55,7 @@ static NSString * const reuseIdentifier = @"MainViewCell";
     dreams = [NSMutableArray array];
     [self.collectionView registerNib:[UINib nibWithNibName:reuseIdentifier
                                                     bundle:[NSBundle mainBundle]]
-          forCellWithReuseIdentifier:reuseIdentifier];
+                        forCellWithReuseIdentifier:reuseIdentifier];
     
     [self getDreams];
     
@@ -88,7 +90,6 @@ static NSString * const reuseIdentifier = @"MainViewCell";
     [manager.reachabilityManager startMonitoring];
     
     
-    
         //get current network status and alert if unreachable
     if([AFNetworkReachabilityManager sharedManager].reachable ){
         
@@ -108,7 +109,7 @@ static NSString * const reuseIdentifier = @"MainViewCell";
 
 - (void)getDreams{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:@"http://api.chedream.org/dreams.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:@"http://api.chedream.org/dreams.json?count=20" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"JSON: %@", responseObject);
         [self parseDreams:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
