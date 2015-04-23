@@ -20,6 +20,13 @@
 		18E2329A1AE8ED140089AAA2 /* MainViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E232981AE8ED140089AAA2 /* MainViewCell.xib */; };
 		18E2329D1AE8EDC30089AAA2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E2329C1AE8EDC30089AAA2 /* Question.m */; };
 		18E2329F1AE8EDED0089AAA2 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E2329E1AE8EDED0089AAA2 /* DetailsViewController.xib */; };
+		18E232A11AE93EC80089AAA2 /* iconPersonPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E232A01AE93EC80089AAA2 /* iconPersonPlaceholder.png */; };
+		18E232A31AE979150089AAA2 /* ic_finance_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E232A21AE979150089AAA2 /* ic_finance_white.png */; };
+		18E232A61AE97AB70089AAA2 /* ic_instrument_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E232A51AE97AB70089AAA2 /* ic_instrument_white.png */; };
+		18E232A81AE97B2C0089AAA2 /* ic_help_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E232A71AE97B2C0089AAA2 /* ic_help_white.png */; };
+		18E232AA1AE991A00089AAA2 /* ic_help.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E232A91AE991A00089AAA2 /* ic_help.png */; };
+		18E232AC1AE991BB0089AAA2 /* ic_instrument.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E232AB1AE991BB0089AAA2 /* ic_instrument.png */; };
+		18E232AE1AE991F50089AAA2 /* ic_finance.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E232AD1AE991F50089AAA2 /* ic_finance.png */; };
 		18FA02D01AD9BC7500D18BA2 /* ResourceContribution.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FA02CF1AD9BC7500D18BA2 /* ResourceContribution.m */; };
 		30D3CA140E601F638ACBDD6D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A2CCAE4E7ABA608C04C44D9 /* libPods.a */; };
 		4E84DE431AD7B3EB005ED94D /* DreamResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E84DE421AD7B3EB005ED94D /* DreamResource.m */; };
@@ -66,6 +73,13 @@
 		18E2329B1AE8EDC30089AAA2 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
 		18E2329C1AE8EDC30089AAA2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
 		18E2329E1AE8EDED0089AAA2 /* DetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
+		18E232A01AE93EC80089AAA2 /* iconPersonPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconPersonPlaceholder.png; sourceTree = "<group>"; };
+		18E232A21AE979150089AAA2 /* ic_finance_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_finance_white.png; sourceTree = "<group>"; };
+		18E232A51AE97AB70089AAA2 /* ic_instrument_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_instrument_white.png; sourceTree = "<group>"; };
+		18E232A71AE97B2C0089AAA2 /* ic_help_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_help_white.png; sourceTree = "<group>"; };
+		18E232A91AE991A00089AAA2 /* ic_help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_help.png; sourceTree = "<group>"; };
+		18E232AB1AE991BB0089AAA2 /* ic_instrument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_instrument.png; sourceTree = "<group>"; };
+		18E232AD1AE991F50089AAA2 /* ic_finance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_finance.png; sourceTree = "<group>"; };
 		18FA02CE1AD9BC7500D18BA2 /* ResourceContribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceContribution.h; sourceTree = "<group>"; };
 		18FA02CF1AD9BC7500D18BA2 /* ResourceContribution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceContribution.m; sourceTree = "<group>"; };
 		4E84DE411AD7B3EB005ED94D /* DreamResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DreamResource.h; sourceTree = "<group>"; };
@@ -133,6 +147,7 @@
 		180E5D2C1AAFA74600C5C4DC /* chedream-ios */ = {
 			isa = PBXGroup;
 			children = (
+				18E232A41AE9792F0089AAA2 /* ImageResources */,
 				4EB46F291AD572C3009E883F /* ViewControlls */,
 				180E5D311AAFA74600C5C4DC /* AppDelegate.h */,
 				180E5D321AAFA74600C5C4DC /* AppDelegate.m */,
@@ -179,6 +194,20 @@
 				180E5D4B1AAFA74700C5C4DC /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18E232A41AE9792F0089AAA2 /* ImageResources */ = {
+			isa = PBXGroup;
+			children = (
+				18E232AD1AE991F50089AAA2 /* ic_finance.png */,
+				18E232A21AE979150089AAA2 /* ic_finance_white.png */,
+				18E232AB1AE991BB0089AAA2 /* ic_instrument.png */,
+				18E232A51AE97AB70089AAA2 /* ic_instrument_white.png */,
+				18E232A91AE991A00089AAA2 /* ic_help.png */,
+				18E232A71AE97B2C0089AAA2 /* ic_help_white.png */,
+				18E232A01AE93EC80089AAA2 /* iconPersonPlaceholder.png */,
+			);
+			name = ImageResources;
 			sourceTree = "<group>";
 		};
 		4EB46F291AD572C3009E883F /* ViewControlls */ = {
@@ -307,11 +336,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E232AA1AE991A00089AAA2 /* ic_help.png in Resources */,
+				18E232A81AE97B2C0089AAA2 /* ic_help_white.png in Resources */,
+				18E232AC1AE991BB0089AAA2 /* ic_instrument.png in Resources */,
 				180E5D3C1AAFA74700C5C4DC /* Main.storyboard in Resources */,
+				18E232AE1AE991F50089AAA2 /* ic_finance.png in Resources */,
 				18E2329A1AE8ED140089AAA2 /* MainViewCell.xib in Resources */,
 				18E2329F1AE8EDED0089AAA2 /* DetailsViewController.xib in Resources */,
+				18E232A31AE979150089AAA2 /* ic_finance_white.png in Resources */,
 				180E5D411AAFA74700C5C4DC /* LaunchScreen.xib in Resources */,
 				180E5D3E1AAFA74700C5C4DC /* Images.xcassets in Resources */,
+				18E232A61AE97AB70089AAA2 /* ic_instrument_white.png in Resources */,
+				18E232A11AE93EC80089AAA2 /* iconPersonPlaceholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
