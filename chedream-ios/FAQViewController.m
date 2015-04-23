@@ -7,14 +7,16 @@
 //
 
 #import "FAQViewController.h"
+#import <AFHTTPRequestOperationManager.h>
+#import "Question.h"
 
-static CGFloat expandedHeight = 300.0;
+
 static CGFloat contractedHeight = 44.0;
 
 
-@interface FAQViewController ()
-@property (nonatomic, strong) NSMutableArray *faqTitlesArray;
-@property (nonatomic, strong) NSMutableArray *faqTextArray;
+@interface FAQViewController (){
+    NSMutableArray *faqArray;
+}
 
 //@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -31,22 +33,35 @@ static CGFloat contractedHeight = 44.0;
     [super viewDidLoad];
     
 // addObjects for FAQTableViewCell Title here
-    self.faqTitlesArray = [[NSMutableArray alloc] initWithObjects:
-                           @"dreams",
-                           @"make",
-                           @"help",
-                           @"how",
-                           @"than what", nil];
-    
-// addObjects for FAQTableViewCell details here
-    self.faqTextArray = [[NSMutableArray alloc] initWithObjects:
-                           @"dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds fds fds fdsfdsfdsfsdfsdffsd   fdsfsdf fdsfsdfsdf",
-                           @"make details details details details details details details details dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds",
-                           @"help details details details details details details details dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fds ",
-                           @"how details details details details details details details details dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds fds dreams details details details details details details details details sdgsg sdgsdgsdgsd  ",
-                           @"than what details details details details details details dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds fds  ", nil];
-    
+    faqArray = [NSMutableArray array];
+    [self getFaq];
     }
+
+- (void)getFaq{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://api.chedream.org/faqs.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"JSON: %@", responseObject);
+        [self parseFaqs:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+- (void)parseFaqs:(id) responseObject{
+    NSDictionary *faqJson = (NSDictionary *) responseObject;
+    if (!faqJson) {
+        //todo set status with error
+        return;
+    }
+    for (NSDictionary *iFaqDict in faqJson) {
+        if (!iFaqDict) {
+            break;
+        }
+        
+        [faqArray addObject:[[Question alloc] initWithDictionary:iFaqDict]];
+    }
+    [self.tableView reloadData];
+}
 
 - (IBAction)onMenuTap:(id)sender {
     if (self.isOpened) {
@@ -58,30 +73,30 @@ static CGFloat contractedHeight = 44.0;
 }
 
 
-
 #pragma mark - TableМiew data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return self.faqTitlesArray.count;
+    return faqArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FaqTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"faqCell" forIndexPath:indexPath];
-    NSString *stringWithSimbol = [ NSString stringWithFormat:@"• %@",[self.faqTitlesArray objectAtIndex:indexPath.row]];
-    cell.faqTitle.text = stringWithSimbol;
-    cell.faqText.text = [self.faqTextArray objectAtIndex:indexPath.row];
+    Question *currentQuestion = [faqArray objectAtIndex:indexPath.row];
+    cell.faqTitle.text = [NSString stringWithFormat:@"• %@", currentQuestion.question];
+    cell.faqText.attributedText = [[NSAttributedString alloc]
+                                        initWithData: [currentQuestion.answer dataUsingEncoding:NSUnicodeStringEncoding]
+                                        options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType }
+                                        documentAttributes: nil
+                                        error: nil];
     cell.faqText.textColor = [UIColor blackColor];
     cell.faqTitle.highlightedTextColor = [UIColor orangeColor];
 
     return cell;
 }
-
 
 
 #pragma cellExpanding
@@ -92,7 +107,7 @@ static CGFloat contractedHeight = 44.0;
         
         if ([[tableView indexPathsForSelectedRows] indexOfObject:indexPath] != NSNotFound) {
             
-            NSString * yourText = self.faqTextArray[indexPath.row]; // or however you are getting the text
+            NSString * yourText = [[faqArray objectAtIndex:indexPath.row] answer]; // or however you are getting the text
             return 44.0f + [self heightForText:yourText];
            // return expandedHeight; // Expanded height
         }
@@ -118,14 +133,11 @@ static CGFloat contractedHeight = 44.0;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self updateTableView];
-
-    
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self updateTableView];
-    
 }
 
 - (void)updateTableView
@@ -137,7 +149,6 @@ static CGFloat contractedHeight = 44.0;
 }
 
 
-
 #pragma - selected cell background color
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -146,12 +157,9 @@ static CGFloat contractedHeight = 44.0;
 //    bgColorView.backgroundColor = [UIColor whiteColor];
 //    //[UIColor colorWithRed:252.0f/255.0f green:176.0f/255.0f blue:64.0f/255.0f alpha:1.0f];
 //    [cell setSelectedBackgroundView:bgColorView];
-//    
-    
     
     // remove section heder
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
 }
 
 @end
