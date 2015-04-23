@@ -30,13 +30,13 @@
 
 static NSString * const reuseIdentifier = @"MainViewCell";
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-    layout.itemSize = CGSizeMake(160, 180);
-    
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-}
+//-(void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+//    layout.itemSize = CGSizeMake(160, 180);
+//    
+//    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+//}
 
 - (IBAction)onMenuTap:(id)sender {
     if (self.isOpened) {
@@ -58,15 +58,11 @@ static NSString * const reuseIdentifier = @"MainViewCell";
     [self getDreams];
     
     
-    
-    
 #pragma network state changing inspector (realtime)
     
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         NSLog(@" !  Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
     }];
-    
-    
 
 #pragma network status manager
     
@@ -137,6 +133,7 @@ static NSString * const reuseIdentifier = @"MainViewCell";
     [self.collectionView reloadData];
 }
 
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -147,9 +144,7 @@ static NSString * const reuseIdentifier = @"MainViewCell";
     return dreams.count;
 }
 
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-//    static NSString *identifier = @"dreamCell";
     
     MainViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 
@@ -187,7 +182,6 @@ static NSString * const reuseIdentifier = @"MainViewCell";
                                         cell.three.frame.origin.y,
                                         cell.three.frame.size.width,
                                         cell.three.frame.size.height)];
-
     
     return cell;
 }
@@ -204,14 +198,14 @@ static NSString * const reuseIdentifier = @"MainViewCell";
     return CGSizeMake(CGRectGetWidth(collectionView.frame)/2 -1, CGRectGetWidth(collectionView.frame)* 0.60-1);
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"showDreamDetails"]) {
-        NSIndexPath *indexPath = [[self.collectionView indexPathsForSelectedItems] objectAtIndex:0];
-        DetailsViewController *destViewController = segue.destinationViewController;
-//        destViewController.selectedRowSlug = [[dreams objectAtIndex:indexPath.row] slug] ;
-        destViewController.currentDream = [dreams objectAtIndex:indexPath.row];
-    }
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if ([segue.identifier isEqualToString:@"showDreamDetails"]) {
+//        NSIndexPath *indexPath = [[self.collectionView indexPathsForSelectedItems] objectAtIndex:0];
+//        DetailsViewController *destViewController = segue.destinationViewController;
+////        destViewController.selectedRowSlug = [[dreams objectAtIndex:indexPath.row] slug] ;
+//        destViewController.currentDream = [dreams objectAtIndex:indexPath.row];
+//    }
+//}
 
 /*
  #pragma mark - Navigation

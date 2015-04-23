@@ -23,7 +23,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *estimate;
 
 
-
 @end
 
 @implementation DetailsViewController
@@ -61,7 +60,7 @@
 //    NSString *text = @"fdhfjdhbjfdh dfjh fdjhd j dfjh fjhdf fdhjdffjfhdjfhdj fdf djfh djhf djfh jdf fjhd fjhd fjhdf jhdf jdhf dhjf dhjf jdfjdfjdfjdfjdhf jdhf djhf jdhf jdhf jdhf XXXX";
     
     CGRect scrollViewFrame = self.view.frame;
-    scrollViewFrame.size.height = 10000;
+    scrollViewFrame.size.height = 5000;
     [(UIScrollView *)self.view setContentSize:scrollViewFrame.size];
 
     [_dreamPoster sd_setImageWithURL:[NSURL URLWithString:_currentDream.posterLink]
