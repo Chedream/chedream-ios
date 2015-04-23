@@ -11,6 +11,7 @@
 #import "DetailsViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
 #import <AFHTTPRequestOperationManager.h>
+//#import <AFNetworking/AFNetworkReachabilityManager.h>
 #import "Dream.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -19,6 +20,7 @@
     NSMutableArray *dreams;
 }
 @property (nonatomic, assign) BOOL isOpened;
+@property (nonatomic,assign,readwrite) BOOL isServerReachable;
 - (IBAction)onMenuTap:(id)sender;
 
 @end
@@ -27,6 +29,14 @@
 @implementation MainViewCollectionViewController
 
 static NSString * const reuseIdentifier = @"MainViewCell";
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    layout.itemSize = CGSizeMake(160, 180);
+    
+    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+}
 
 - (IBAction)onMenuTap:(id)sender {
     if (self.isOpened) {
@@ -46,6 +56,58 @@ static NSString * const reuseIdentifier = @"MainViewCell";
           forCellWithReuseIdentifier:reuseIdentifier];
     
     [self getDreams];
+    
+    
+    
+    
+#pragma network state changing inspector (realtime)
+    
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        NSLog(@" !  Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
+    }];
+    
+    
+
+#pragma network status manager
+    
+    NSURL *baseURL = [NSURL URLWithString:@"http://api.chedream.org/"];
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
+    
+    NSOperationQueue *operationQueue = manager.operationQueue;
+    [manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                [operationQueue setSuspended:NO];
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+            default:
+                [operationQueue setSuspended:YES];
+                break;
+        }
+    }];
+    
+    
+        // to start monitoring
+    [manager.reachabilityManager startMonitoring];
+    
+    
+    
+        //get current network status and alert if unreachable
+    if([AFNetworkReachabilityManager sharedManager].reachable ){
+        
+        NSLog(@"%@",@"is reachable");
+        
+    }else{
+        
+        NSLog(@"%@",@"not reachable");
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No connection" message:@"Check your Internet connection" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alert addButtonWithTitle:@"OK"];
+        [alert show];
+        return;
+    }
+    
 }
 
 - (void)getDreams{
@@ -137,7 +199,6 @@ static NSString * const reuseIdentifier = @"MainViewCell";
     
     [self.navigationController pushViewController:details animated:YES];
 }
-
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(CGRectGetWidth(collectionView.frame)/2 -1, CGRectGetWidth(collectionView.frame)* 0.60-1);
