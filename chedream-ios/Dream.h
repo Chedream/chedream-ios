@@ -15,9 +15,9 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *slug;
 @property (nonatomic, strong) NSString *posterLink;
-@property (nonatomic, strong) NSNumber *equipmentProgress;
-@property (nonatomic, strong) NSNumber *financialProgress;
-@property (nonatomic, strong) NSNumber *workProgress;
+@property (nonatomic, strong) NSString *equipmentProgress;
+@property (nonatomic, strong) NSString *financialProgress;
+@property (nonatomic, strong) NSString *workProgress;
 
 @property (nonatomic, strong) Author *dreamAuthor;
 @property (nonatomic, strong) NSString *dreamDescription;

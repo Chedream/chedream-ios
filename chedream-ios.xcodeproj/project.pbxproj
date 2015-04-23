@@ -16,6 +16,10 @@
 		180E5D4D1AAFA74700C5C4DC /* chedream_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E5D4C1AAFA74700C5C4DC /* chedream_iosTests.m */; };
 		182CB96E1AC872560087DA92 /* Dream.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CB96D1AC872560087DA92 /* Dream.m */; };
 		182CB9711AC882D80087DA92 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CB9701AC882D80087DA92 /* Author.m */; };
+		18E232991AE8ED140089AAA2 /* MainViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E232971AE8ED140089AAA2 /* MainViewCell.m */; };
+		18E2329A1AE8ED140089AAA2 /* MainViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E232981AE8ED140089AAA2 /* MainViewCell.xib */; };
+		18E2329D1AE8EDC30089AAA2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E2329C1AE8EDC30089AAA2 /* Question.m */; };
+		18E2329F1AE8EDED0089AAA2 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E2329E1AE8EDED0089AAA2 /* DetailsViewController.xib */; };
 		18FA02D01AD9BC7500D18BA2 /* ResourceContribution.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FA02CF1AD9BC7500D18BA2 /* ResourceContribution.m */; };
 		30D3CA140E601F638ACBDD6D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A2CCAE4E7ABA608C04C44D9 /* libPods.a */; };
 		4E84DE431AD7B3EB005ED94D /* DreamResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E84DE421AD7B3EB005ED94D /* DreamResource.m */; };
@@ -56,6 +60,12 @@
 		182CB96D1AC872560087DA92 /* Dream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dream.m; sourceTree = "<group>"; };
 		182CB96F1AC882D80087DA92 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
 		182CB9701AC882D80087DA92 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
+		18E232961AE8ED140089AAA2 /* MainViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewCell.h; sourceTree = "<group>"; };
+		18E232971AE8ED140089AAA2 /* MainViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewCell.m; sourceTree = "<group>"; };
+		18E232981AE8ED140089AAA2 /* MainViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewCell.xib; sourceTree = "<group>"; };
+		18E2329B1AE8EDC30089AAA2 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		18E2329C1AE8EDC30089AAA2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		18E2329E1AE8EDED0089AAA2 /* DetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		18FA02CE1AD9BC7500D18BA2 /* ResourceContribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceContribution.h; sourceTree = "<group>"; };
 		18FA02CF1AD9BC7500D18BA2 /* ResourceContribution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceContribution.m; sourceTree = "<group>"; };
 		4E84DE411AD7B3EB005ED94D /* DreamResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DreamResource.h; sourceTree = "<group>"; };
@@ -135,6 +145,8 @@
 				182CB96D1AC872560087DA92 /* Dream.m */,
 				182CB96F1AC882D80087DA92 /* Author.h */,
 				182CB9701AC882D80087DA92 /* Author.m */,
+				18E2329B1AE8EDC30089AAA2 /* Question.h */,
+				18E2329C1AE8EDC30089AAA2 /* Question.m */,
 				4E84DE411AD7B3EB005ED94D /* DreamResource.h */,
 				4E84DE421AD7B3EB005ED94D /* DreamResource.m */,
 				18FA02CE1AD9BC7500D18BA2 /* ResourceContribution.h */,
@@ -178,6 +190,7 @@
 				4EB46F1A1AD567E2009E883F /* MainViewCollectionViewController.m */,
 				4EB46F2A1AD5753D009E883F /* DetailsViewController.h */,
 				4EB46F2B1AD5753D009E883F /* DetailsViewController.m */,
+				18E2329E1AE8EDED0089AAA2 /* DetailsViewController.xib */,
 				4EB46F2D1AD5757E009E883F /* AboutViewController.h */,
 				4EB46F2E1AD5757E009E883F /* AboutViewController.m */,
 				4EB46F301AD575B2009E883F /* FAQViewController.h */,
@@ -188,6 +201,9 @@
 				4EB46F341AD57618009E883F /* ContactsViewController.m */,
 				4E84DE441AD82881005ED94D /* BaseViewController.h */,
 				4E84DE451AD82881005ED94D /* BaseViewController.m */,
+				18E232961AE8ED140089AAA2 /* MainViewCell.h */,
+				18E232971AE8ED140089AAA2 /* MainViewCell.m */,
+				18E232981AE8ED140089AAA2 /* MainViewCell.xib */,
 			);
 			name = ViewControlls;
 			sourceTree = "<group>";
@@ -292,6 +308,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				180E5D3C1AAFA74700C5C4DC /* Main.storyboard in Resources */,
+				18E2329A1AE8ED140089AAA2 /* MainViewCell.xib in Resources */,
+				18E2329F1AE8EDED0089AAA2 /* DetailsViewController.xib in Resources */,
 				180E5D411AAFA74700C5C4DC /* LaunchScreen.xib in Resources */,
 				180E5D3E1AAFA74700C5C4DC /* Images.xcassets in Resources */,
 			);
@@ -353,12 +371,14 @@
 				18FA02D01AD9BC7500D18BA2 /* ResourceContribution.m in Sources */,
 				182CB9711AC882D80087DA92 /* Author.m in Sources */,
 				4EB46F321AD575B2009E883F /* FAQViewController.m in Sources */,
+				18E232991AE8ED140089AAA2 /* MainViewCell.m in Sources */,
 				180E5D361AAFA74600C5C4DC /* chedream_ios.xcdatamodeld in Sources */,
 				4EB46F181AD55AE7009E883F /* MenuTableViewController.m in Sources */,
 				4E84DE461AD82881005ED94D /* BaseViewController.m in Sources */,
 				180E5D301AAFA74600C5C4DC /* main.m in Sources */,
 				4EB46F2C1AD5753D009E883F /* DetailsViewController.m in Sources */,
 				4E84DE431AD7B3EB005ED94D /* DreamResource.m in Sources */,
+				18E2329D1AE8EDC30089AAA2 /* Question.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
