@@ -8,21 +8,45 @@
 
 #import "FAQViewController.h"
 
+static CGFloat expandedHeight = 300.0;
+static CGFloat contractedHeight = 44.0;
+
+
 @interface FAQViewController ()
+@property (nonatomic, strong) NSMutableArray *faqTitlesArray;
+@property (nonatomic, strong) NSMutableArray *faqTextArray;
+
+//@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
 @implementation FAQViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+// addObjects for FAQTableViewCell Title here
+    self.faqTitlesArray = [[NSMutableArray alloc] initWithObjects:
+                           @"dreams",
+                           @"make",
+                           @"help",
+                           @"how",
+                           @"than what", nil];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
+// addObjects for FAQTableViewCell details here
+    self.faqTextArray = [[NSMutableArray alloc] initWithObjects:
+                           @"dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds fds fds fdsfdsfdsfsdfsdffsd   fdsfsdf fdsfsdfsdf",
+                           @"make details details details details details details details details dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds",
+                           @"help details details details details details details details dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fds ",
+                           @"how details details details details details details details details dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds fds dreams details details details details details details details details sdgsg sdgsdgsdgsd  ",
+                           @"than what details details details details details details dreams details details details details details details details details sdgsg sdgsdgsdgsd sdgsdgsdsdgd sdfsfsdfsdfsd fdsfsdfsdfsd fdsfsdfsdfsd fdsfdfsdfsdf fdsfsdfsdf fdsfds fds fdsfdsfsfsd fdsfdsd fdsdfsdf fdsf fds fds  ", nil];
+    
+    }
 
 - (IBAction)onMenuTap:(id)sender {
     if (self.isOpened) {
@@ -33,77 +57,101 @@
     self.isOpened = !self.isOpened;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-#pragma mark - Table view data source
+
+#pragma mark - TableМiew data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+  
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+
+    return self.faqTitlesArray.count;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    FaqTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"faqCell" forIndexPath:indexPath];
+    NSString *stringWithSimbol = [ NSString stringWithFormat:@"• %@",[self.faqTitlesArray objectAtIndex:indexPath.row]];
+    cell.faqTitle.text = stringWithSimbol;
+    cell.faqText.text = [self.faqTextArray objectAtIndex:indexPath.row];
+    cell.faqText.textColor = [UIColor blackColor];
+    cell.faqTitle.highlightedTextColor = [UIColor orangeColor];
+
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
+
+#pragma cellExpanding
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([tableView indexPathsForSelectedRows].count) {
+        
+        if ([[tableView indexPathsForSelectedRows] indexOfObject:indexPath] != NSNotFound) {
+            
+            NSString * yourText = self.faqTextArray[indexPath.row]; // or however you are getting the text
+            return 44.0f + [self heightForText:yourText];
+           // return expandedHeight; // Expanded height
+        }
+        
+        return contractedHeight; // Normal height
+    }
+    
+    return contractedHeight; // Normal height
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+#pragma get size of content for cell height
+
+-(CGFloat)heightForText:(NSString *)text
+{
+    NSInteger MAX_HEIGHT = 2000;
+    UITextView * textView = [[UITextView alloc] initWithFrame: CGRectMake(0, 0, 320, MAX_HEIGHT)];
+    textView.text = text;
+    textView.font = [UIFont systemFontOfSize:13];
+    [textView sizeToFit];
+    return textView.frame.size.height;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self updateTableView];
+
+    
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self updateTableView];
+    
 }
-*/
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)updateTableView
+{
+    [UIView setAnimationsEnabled:NO];
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+    [UIView setAnimationsEnabled:YES];
 }
-*/
+
+
+
+#pragma - selected cell background color
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+//    UIView *bgColorView = [[UIView alloc] init];
+//    bgColorView.backgroundColor = [UIColor whiteColor];
+//    //[UIColor colorWithRed:252.0f/255.0f green:176.0f/255.0f blue:64.0f/255.0f alpha:1.0f];
+//    [cell setSelectedBackgroundView:bgColorView];
+//    
+    
+    
+    // remove section heder
+    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+}
 
 @end
