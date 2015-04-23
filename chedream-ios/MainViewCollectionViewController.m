@@ -7,6 +7,7 @@
 //
 
 #import "MainViewCollectionViewController.h"
+#import "MainViewCell.h"
 #import "DetailsViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
 #import <AFHTTPRequestOperationManager.h>
@@ -25,7 +26,7 @@
 
 @implementation MainViewCollectionViewController
 
-static NSString * const reuseIdentifier = @"Cell";
+static NSString * const reuseIdentifier = @"MainViewCell";
 
 - (IBAction)onMenuTap:(id)sender {
     if (self.isOpened) {
@@ -40,6 +41,9 @@ static NSString * const reuseIdentifier = @"Cell";
     [super viewDidLoad];
     
     dreams = [NSMutableArray array];
+    [self.collectionView registerNib:[UINib nibWithNibName:reuseIdentifier
+                                                    bundle:[NSBundle mainBundle]]
+          forCellWithReuseIdentifier:reuseIdentifier];
     
     [self getDreams];
 }
@@ -83,28 +87,57 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *identifier = @"dreamCell";
+//    static NSString *identifier = @"dreamCell";
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    MainViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+
     Dream *dreamByIndex = dreams[indexPath.row];
     
-    UIImageView *dreamImageView = (UIImageView *)[cell viewWithTag:100];
-//    dreamImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:dreamByIndex.posterLink]]];
-    [dreamImageView sd_setImageWithURL:[NSURL URLWithString:dreamByIndex.posterLink]
+    [cell.poster sd_setImageWithURL:[NSURL URLWithString:dreamByIndex.posterLink]
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    cell.title.text = [dreamByIndex title];
     
-    UILabel *dreamTitle = (UILabel *)[cell viewWithTag:2];
-    dreamTitle.text = [dreamByIndex title];
+    float buttonWidth = cell.three.frame.size.width;
+
+    float single = cell.frame.size.width/2 - buttonWidth/2;
+    [cell.three setTitle:@"button" forState:UIControlStateNormal];
+
+
+    if (!dreamByIndex.financialProgress) {
+        cell.one.hidden = YES;
+    } else {
+        cell.one.hidden = NO;
+        [cell.one setTitle:dreamByIndex.financialProgress forState:UIControlStateNormal];
+    }
+    if (!dreamByIndex.equipmentProgress) {
+        cell.two.hidden = YES;
+    } else{
+        cell.two.hidden = NO;
+        [cell.two setTitle:dreamByIndex.equipmentProgress forState:UIControlStateNormal];
+    }
+    if (!dreamByIndex.workProgress){
+        cell.three.hidden = YES;
+    } else {
+        cell.three.hidden = NO;
+        [cell.three setTitle:dreamByIndex.workProgress forState:UIControlStateNormal];
+    }
+    [cell.three setFrame:CGRectMake(single,
+                                        cell.three.frame.origin.y,
+                                        cell.three.frame.size.width,
+                                        cell.three.frame.size.height)];
+
     
     return cell;
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-    layout.itemSize = CGSizeMake(160, 180);
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    DetailsViewController *details = [[DetailsViewController alloc] initWithNibName:@"DetailsViewController" bundle:nil];
+    details.currentDream = [dreams objectAtIndex:indexPath.row];
     
+    [self.navigationController pushViewController:details animated:YES];
 }
+
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(CGRectGetWidth(collectionView.frame)/2 -1, CGRectGetWidth(collectionView.frame)* 0.60-1);

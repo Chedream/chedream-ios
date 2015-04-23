@@ -2,8 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sMh-Sh-XQe">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--init-->
@@ -247,52 +245,6 @@
         <scene sceneID="wqX-dP-L1g">
             <objects>
                 <viewController title="details" id="TZr-NZ-nZ2" customClass="DetailsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Pqu-XZ-goq"/>
-                        <viewControllerLayoutGuide type="bottom" id="urD-DW-DmJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5Rt-qU-XQW" customClass="UIScrollView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dream1.png" translatesAutoresizingMaskIntoConstraints="NO" id="jor-su-CJX">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="231"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="jor-su-CJX" secondAttribute="height" multiplier="320:231" id="36Y-Ti-oiS"/>
-                                    <constraint firstAttribute="width" constant="320" id="z6z-F5-TaY"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ujG-pZ-K8D">
-                                <rect key="frame" x="16" y="211" width="62" height="68"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nickname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aok-gx-IQS">
-                                <rect key="frame" x="86" y="239" width="210" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nq-Mt-Okp">
-                                <rect key="frame" x="16" y="276" width="288" height="59"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFy-cH-ujO">
-                                <rect key="frame" x="16" y="343" width="288" height="65"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="jor-su-CJX" secondAttribute="trailing" constant="-16" id="5RF-mj-UVi"/>
-                            <constraint firstItem="jor-su-CJX" firstAttribute="leading" secondItem="5Rt-qU-XQW" secondAttribute="leadingMargin" constant="-16" id="7cJ-bv-h36"/>
-                            <constraint firstItem="jor-su-CJX" firstAttribute="top" secondItem="Pqu-XZ-goq" secondAttribute="bottom" id="Ivp-2c-er9"/>
-                        </constraints>
-                    </view>
                     <navigationItem key="navigationItem" id="cb9-fg-Zvh">
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="menu" id="hnw-yG-Lqh">
@@ -302,13 +254,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="authorName" destination="Aok-gx-IQS" id="SPg-aN-r6S"/>
-                        <outlet property="autorAvatar" destination="ujG-pZ-K8D" id="NHL-bG-1gI"/>
-                        <outlet property="dreamDescription" destination="PFy-cH-ujO" id="rfI-1j-3oX"/>
-                        <outlet property="dreamPoster" destination="jor-su-CJX" id="Rni-2d-dWk"/>
-                        <outlet property="dreamTitle" destination="0Nq-Mt-Okp" id="arp-Z5-tw8"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vjj-cY-708" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -355,43 +300,10 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dream1.png" translatesAutoresizingMaskIntoConstraints="NO" id="AkZ-mB-a9g">
-                                            <rect key="frame" x="0.0" y="-11" width="150" height="112"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="AkZ-mB-a9g" secondAttribute="height" multiplier="75:56" id="ZQw-fg-s2t"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qtr-N5-CI2">
-                                            <rect key="frame" x="8" y="95" width="134" height="41"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="Label">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="AkZ-mB-a9g" firstAttribute="top" secondItem="uoR-5v-D3v" secondAttribute="topMargin" constant="-19" id="EyG-Uw-kB8"/>
-                                    <constraint firstItem="AkZ-mB-a9g" firstAttribute="leading" secondItem="uoR-5v-D3v" secondAttribute="leadingMargin" constant="-8" id="Kyk-mu-SRL"/>
-                                    <constraint firstItem="Qtr-N5-CI2" firstAttribute="top" secondItem="uoR-5v-D3v" secondAttribute="topMargin" constant="87" id="LzO-wP-c5B"/>
-                                    <constraint firstItem="Qtr-N5-CI2" firstAttribute="leading" secondItem="uoR-5v-D3v" secondAttribute="leadingMargin" id="QhF-Cq-dJB"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="Qtr-N5-CI2" secondAttribute="bottom" constant="36" id="Tap-Q0-rTb"/>
-                                    <constraint firstItem="Qtr-N5-CI2" firstAttribute="trailing" secondItem="uoR-5v-D3v" secondAttribute="trailingMargin" id="uLb-J5-u0P"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="AkZ-mB-a9g" secondAttribute="trailing" constant="-8" id="xh0-1R-NXe"/>
-                                </constraints>
                                 <size key="customSize" width="150" height="180"/>
-                                <connections>
-                                    <segue destination="TZr-NZ-nZ2" kind="push" identifier="showDreamDetails" id="X32-o0-7M1"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -486,7 +398,6 @@
         <image name="about_us" width="16" height="16"/>
         <image name="all_dreams" width="14" height="15"/>
         <image name="contacts" width="17" height="13"/>
-        <image name="dream1.png" width="181" height="106"/>
         <image name="exit" width="18" height="15"/>
         <image name="faq" width="15" height="15"/>
         <image name="logo59" width="158" height="60"/>

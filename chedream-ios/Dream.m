@@ -17,9 +17,9 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dict {
     if ((self = [super init])) {
         NSDictionary *dream = dict[@"dream"];
-        self.financialProgress = dict[@"dream_financial_progress"];
-        self.equipmentProgress = dict[@"dream_equipment_progress"];
-        self.workProgress = dict[@"dream_work_progress"];
+        self.financialProgress = [dict[@"dream_financial_progress"] stringValue];
+        self.equipmentProgress = [dict[@"dream_equipment_progress"] stringValue];
+        self.workProgress = [dict[@"dream_work_progress"] stringValue];
 
         self.dreamId = dream[@"id"];
         self.title = dream[@"title"];
