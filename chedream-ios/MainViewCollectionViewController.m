@@ -11,9 +11,9 @@
 #import "DetailsViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
 #import <AFHTTPRequestOperationManager.h>
-//#import <AFNetworking/AFNetworkReachabilityManager.h>
 #import "Dream.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+
 
 
 @interface MainViewCollectionViewController () {
@@ -99,9 +99,9 @@ static NSString * const reuseIdentifier = @"MainViewCell";
         
         NSLog(@"%@",@"not reachable");
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No connection" message:@"Check your Internet connection" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-        [alert addButtonWithTitle:@"OK"];
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No connection" message:@"Check your Internet connection" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+//        [alert addButtonWithTitle:@"OK"];
+//        [alert show];
         return;
     }
     
@@ -154,36 +154,93 @@ static NSString * const reuseIdentifier = @"MainViewCell";
     [cell.poster sd_setImageWithURL:[NSURL URLWithString:dreamByIndex.posterLink]
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     cell.title.text = [dreamByIndex title];
+//    
+//    float buttonWidth = cell.three.frame.size.width;
+//
+//    float single = cell.frame.size.width/2 - buttonWidth/2;
+//    [cell.three setTitle:@"button" forState:UIControlStateNormal];
     
-    float buttonWidth = cell.three.frame.size.width;
-
-    float single = cell.frame.size.width/2 - buttonWidth/2;
-    [cell.three setTitle:@"button" forState:UIControlStateNormal];
-
-
-    if (!dreamByIndex.financialProgress) {
-        cell.one.hidden = YES;
-    } else {
-        cell.one.hidden = NO;
-        [cell.one setTitle:dreamByIndex.financialProgress forState:UIControlStateNormal];
+    if (dreamByIndex.equipmentProgress) {
+        cell.equipmentProgress.tintColor = [UIColor blackColor];
+        cell.equipmentProgress.progress = [dreamByIndex.equipmentProgress integerValue]/100;
+        NSLog(@"%f",[dreamByIndex.equipmentProgress floatValue]);
     }
-    if (!dreamByIndex.equipmentProgress) {
-        cell.two.hidden = YES;
-    } else{
-        cell.two.hidden = NO;
-        [cell.two setTitle:dreamByIndex.equipmentProgress forState:UIControlStateNormal];
-    }
-    if (!dreamByIndex.workProgress){
-        cell.three.hidden = YES;
-    } else {
-        cell.three.hidden = NO;
-        [cell.three setTitle:dreamByIndex.workProgress forState:UIControlStateNormal];
-    }
-    [cell.three setFrame:CGRectMake(single,
-                                        cell.three.frame.origin.y,
-                                        cell.three.frame.size.width,
-                                        cell.three.frame.size.height)];
     
+    
+    
+    
+    
+/*
+    if (!dreamByIndex.equipmentProgress || [dreamByIndex.equipmentProgress integerValue]/100 >= 1 ) {
+        cell.equipmentProgress.tintColor = [UIColor orangeColor];
+        cell.equipmentProgress.progress = 0.99;
+        
+    } else {
+        
+    [cell makeEquipmentProgress]; // or uncoment awakeFromNib in MainViewCell
+    [cell.equipmentProgress setProgress:[dreamByIndex.equipmentProgress integerValue]/100 animated:YES];
+    
+        NSLog(@"!   %i", [dreamByIndex.equipmentProgress integerValue]/100);
+    }
+    
+    
+    
+    if (!dreamByIndex.financialProgress || [dreamByIndex.financialProgress integerValue]/100 >= 1 ) {
+        cell.financialProgress.tintColor = [UIColor orangeColor];
+        cell.financialProgress.progress = 0.99;
+        
+    } else {
+    
+    [cell makeFinancialProgress]; // or uncoment awakeFromNib in MainViewCell
+    [cell.financialProgress setProgress:[dreamByIndex.financialProgress integerValue]/100 animated:YES];
+
+        NSLog(@"int/100   %i", [dreamByIndex.financialProgress integerValue]/100);
+    }
+    
+    
+    if (!dreamByIndex.workProgress || [dreamByIndex.workProgress integerValue]/100 >= 1 ) {
+        cell.workProgress.tintColor = [UIColor orangeColor];
+        cell.workProgress.progress = 0.99;
+        
+    } else {
+    
+    [cell makeWorkProgress]; // or uncoment awakeFromNib in MainViewCell
+    [cell.workProgress setProgress:[dreamByIndex.workProgress integerValue]/100 animated:YES];
+
+        NSLog(@"!float/100   %i", [dreamByIndex.workProgress integerValue]/100);
+    }
+*/
+    
+    
+    
+    
+
+//
+//    if (!dreamByIndex.financialProgress) {
+//        cell.one.hidden = YES;
+//       
+//        
+//    } else {
+//        cell.one.hidden = NO;
+//        [cell.one setTitle:dreamByIndex.financialProgress forState:UIControlStateNormal];
+//    }
+//    if (!dreamByIndex.equipmentProgress) {
+//        cell.two.hidden = YES;
+//    } else{
+//        cell.two.hidden = NO;
+//        [cell.two setTitle:dreamByIndex.equipmentProgress forState:UIControlStateNormal];
+//    }
+//    if (!dreamByIndex.workProgress){
+//        cell.three.hidden = YES;
+//    } else {
+//        cell.three.hidden = NO;
+//        [cell.three setTitle:dreamByIndex.workProgress forState:UIControlStateNormal];
+//    }
+//    [cell.three setFrame:CGRectMake(single,
+//                                        cell.three.frame.origin.y,
+//                                        cell.three.frame.size.width,
+//                                        cell.three.frame.size.height)];
+//    
     return cell;
 }
 

@@ -44,9 +44,10 @@
     self.radius = 20.0;
     self.usesVibrancyEffect = YES;
     
-    [self.backgroundLayer addSublayer:self.progressLayer];
     [self.backgroundLayer addSublayer:self.progressBackgroundLayer]; //addad by tpx for gray background
 
+    [self.backgroundLayer addSublayer:self.progressLayer];
+    
     
     self.backgroundView = [self defaultBackgroundView];
     
