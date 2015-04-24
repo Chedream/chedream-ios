@@ -160,89 +160,43 @@ static NSString * const reuseIdentifier = @"MainViewCell";
 //    float single = cell.frame.size.width/2 - buttonWidth/2;
 //    [cell.three setTitle:@"button" forState:UIControlStateNormal];
     
-    if (dreamByIndex.equipmentProgress) {
-        cell.equipmentProgress.tintColor = [UIColor blackColor];
-        cell.equipmentProgress.progress = [dreamByIndex.equipmentProgress integerValue]/100;
-        NSLog(@"%f",[dreamByIndex.equipmentProgress floatValue]);
-    }
+   // NSLog(@" string  %@",dreamByIndex.financialProgress);
     
     
     
-    
-    
-/*
-    if (!dreamByIndex.equipmentProgress || [dreamByIndex.equipmentProgress integerValue]/100 >= 1 ) {
+   
+    float countedProgress = [self getFloatValue: dreamByIndex.equipmentProgress];
+    if (countedProgress == 0.999) {
         cell.equipmentProgress.tintColor = [UIColor orangeColor];
-        cell.equipmentProgress.progress = 0.99;
-        
     } else {
-        
-    [cell makeEquipmentProgress]; // or uncoment awakeFromNib in MainViewCell
-    [cell.equipmentProgress setProgress:[dreamByIndex.equipmentProgress integerValue]/100 animated:YES];
-    
-        NSLog(@"!   %i", [dreamByIndex.equipmentProgress integerValue]/100);
+        cell.equipmentProgress.tintColor = [UIColor blackColor];
     }
+    cell.equipmentProgress.progress = countedProgress;
     
     
-    
-    if (!dreamByIndex.financialProgress || [dreamByIndex.financialProgress integerValue]/100 >= 1 ) {
+    if (dreamByIndex.workProgress) {
+        
+        cell.workProgress.progress = [self getFloatValue:dreamByIndex.workProgress];
+        cell.workProgress.tintColor = [UIColor blackColor];
+    } else {
+        cell.financialProgress.progress = 0.999f;
         cell.financialProgress.tintColor = [UIColor orangeColor];
-        cell.financialProgress.progress = 0.99;
-        
-    } else {
-    
-    [cell makeFinancialProgress]; // or uncoment awakeFromNib in MainViewCell
-    [cell.financialProgress setProgress:[dreamByIndex.financialProgress integerValue]/100 animated:YES];
-
-        NSLog(@"int/100   %i", [dreamByIndex.financialProgress integerValue]/100);
     }
     
+ 
     
-    if (!dreamByIndex.workProgress || [dreamByIndex.workProgress integerValue]/100 >= 1 ) {
-        cell.workProgress.tintColor = [UIColor orangeColor];
-        cell.workProgress.progress = 0.99;
-        
-    } else {
-    
-    [cell makeWorkProgress]; // or uncoment awakeFromNib in MainViewCell
-    [cell.workProgress setProgress:[dreamByIndex.workProgress integerValue]/100 animated:YES];
-
-        NSLog(@"!float/100   %i", [dreamByIndex.workProgress integerValue]/100);
-    }
-*/
-    
-    
-    
-    
-
-//
-//    if (!dreamByIndex.financialProgress) {
-//        cell.one.hidden = YES;
-//       
-//        
-//    } else {
-//        cell.one.hidden = NO;
-//        [cell.one setTitle:dreamByIndex.financialProgress forState:UIControlStateNormal];
-//    }
-//    if (!dreamByIndex.equipmentProgress) {
-//        cell.two.hidden = YES;
-//    } else{
-//        cell.two.hidden = NO;
-//        [cell.two setTitle:dreamByIndex.equipmentProgress forState:UIControlStateNormal];
-//    }
-//    if (!dreamByIndex.workProgress){
-//        cell.three.hidden = YES;
-//    } else {
-//        cell.three.hidden = NO;
-//        [cell.three setTitle:dreamByIndex.workProgress forState:UIControlStateNormal];
-//    }
-//    [cell.three setFrame:CGRectMake(single,
-//                                        cell.three.frame.origin.y,
-//                                        cell.three.frame.size.width,
-//                                        cell.three.frame.size.height)];
-//    
     return cell;
 }
+
+- (float)getFloatValue:(NSString*)string
+
+{   float result = 0.999;
+    int intV = [string intValue];
+    if (intV < 100)
+    {
+        result = (float)intV / 100;
+    }
+    return result;}
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
