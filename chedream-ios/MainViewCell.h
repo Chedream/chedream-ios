@@ -16,9 +16,9 @@
 @property (nonatomic, strong) IBOutlet UIButton *two;
 @property (nonatomic, strong) IBOutlet UIButton *three;
 
-@property (nonatomic, strong) IBOutlet UCZProgressView * workProgress;
-@property (nonatomic, strong) IBOutlet UCZProgressView * financialProgress;
-@property (nonatomic, strong) IBOutlet UCZProgressView * equipmentProgress;
+@property (nonatomic, weak) IBOutlet UCZProgressView * workProgress;
+@property (nonatomic, weak) IBOutlet UCZProgressView * financialProgress;
+@property (nonatomic, weak) IBOutlet UCZProgressView * equipmentProgress;
 
 -(void) makeWorkProgress;
 -(void) makeFinancialProgress;

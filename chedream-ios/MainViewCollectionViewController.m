@@ -160,9 +160,58 @@ static NSString * const reuseIdentifier = @"MainViewCell";
 //    float single = cell.frame.size.width/2 - buttonWidth/2;
 //    [cell.three setTitle:@"button" forState:UIControlStateNormal];
     
-    [cell makeFinancialProgress];
-    cell.financialProgress.tintColor = [UIColor orangeColor];
-    [cell.financialProgress setProgress:0.5 animated:YES];
+    if (dreamByIndex.equipmentProgress) {
+        cell.equipmentProgress.tintColor = [UIColor blackColor];
+        cell.equipmentProgress.progress = [dreamByIndex.equipmentProgress integerValue]/100;
+        NSLog(@"%f",[dreamByIndex.equipmentProgress floatValue]);
+    }
+    
+    
+    
+    
+    
+/*
+    if (!dreamByIndex.equipmentProgress || [dreamByIndex.equipmentProgress integerValue]/100 >= 1 ) {
+        cell.equipmentProgress.tintColor = [UIColor orangeColor];
+        cell.equipmentProgress.progress = 0.99;
+        
+    } else {
+        
+    [cell makeEquipmentProgress]; // or uncoment awakeFromNib in MainViewCell
+    [cell.equipmentProgress setProgress:[dreamByIndex.equipmentProgress integerValue]/100 animated:YES];
+    
+        NSLog(@"!   %i", [dreamByIndex.equipmentProgress integerValue]/100);
+    }
+    
+    
+    
+    if (!dreamByIndex.financialProgress || [dreamByIndex.financialProgress integerValue]/100 >= 1 ) {
+        cell.financialProgress.tintColor = [UIColor orangeColor];
+        cell.financialProgress.progress = 0.99;
+        
+    } else {
+    
+    [cell makeFinancialProgress]; // or uncoment awakeFromNib in MainViewCell
+    [cell.financialProgress setProgress:[dreamByIndex.financialProgress integerValue]/100 animated:YES];
+
+        NSLog(@"int/100   %i", [dreamByIndex.financialProgress integerValue]/100);
+    }
+    
+    
+    if (!dreamByIndex.workProgress || [dreamByIndex.workProgress integerValue]/100 >= 1 ) {
+        cell.workProgress.tintColor = [UIColor orangeColor];
+        cell.workProgress.progress = 0.99;
+        
+    } else {
+    
+    [cell makeWorkProgress]; // or uncoment awakeFromNib in MainViewCell
+    [cell.workProgress setProgress:[dreamByIndex.workProgress integerValue]/100 animated:YES];
+
+        NSLog(@"!float/100   %i", [dreamByIndex.workProgress integerValue]/100);
+    }
+*/
+    
+    
     
     
 
