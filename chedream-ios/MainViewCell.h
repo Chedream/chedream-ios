@@ -12,9 +12,9 @@
 @interface MainViewCell : UICollectionViewCell
 @property (nonatomic, strong) IBOutlet UILabel *title;
 @property (nonatomic, strong) IBOutlet UIImageView *poster;
-@property (nonatomic, strong) IBOutlet UIButton *one;
-@property (nonatomic, strong) IBOutlet UIButton *two;
-@property (nonatomic, strong) IBOutlet UIButton *three;
+@property (nonatomic, strong) IBOutlet UIImageView *one;
+@property (nonatomic, strong) IBOutlet UIImageView *two;
+@property (nonatomic, strong) IBOutlet UIImageView *three;
 
 @property (nonatomic, weak) IBOutlet UCZProgressView * workProgress;
 @property (nonatomic, weak) IBOutlet UCZProgressView * financialProgress;
