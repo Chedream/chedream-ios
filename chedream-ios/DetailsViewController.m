@@ -21,8 +21,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *dreamTitle;
 @property (weak, nonatomic) IBOutlet UILabel *dreamDescription;
 @property (strong, nonatomic) IBOutlet UIView *progressModule;
-@property (strong, nonatomic) IBOutlet UIButton *participants;
-@property (strong, nonatomic) IBOutlet UIButton *estimate;
+//@property (strong, nonatomic) IBOutlet UIButton *participants;
+//@property (strong, nonatomic) IBOutlet UIButton *estimate;
 
 
 @end
@@ -59,10 +59,7 @@
 
 
 - (void)setDataToView {
-//    NSString *text = @"fdhfjdhbjfdh dfjh fdjhd j dfjh fjhdf fdhjdffjfhdjfhdj fdf djfh djhf djfh jdf fjhd fjhd fjhdf jhdf jdhf dhjf dhjf jdfjdfjdfjdfjdhf jdhf djhf jdhf jdhf jdhf XXXX";
-    float totalHeight = 0;
     CGRect scrollViewFrame = self.view.frame;
-    
 
     [_dreamPoster sd_setImageWithURL:[NSURL URLWithString:_currentDream.posterLink]
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
@@ -72,22 +69,19 @@
     _avatarContainer.layer.borderWidth = 0;
     
     _authorName.text = [_currentDream.dreamAuthor authorFullName];
-//    _authorName.text = @"test";
-//    [_authorName sizeToFit];
     CGRect authorFrame = self.border.frame;
 
     _dreamTitle.text = _currentDream.title;
-//    _dreamTitle.text = text;
     [_dreamTitle sizeToFit];
     CGRect dreamTitleFrame = self.dreamTitle.frame;
     dreamTitleFrame.origin.y = authorFrame.origin.y + authorFrame.size.height + 10;
     self.dreamTitle.frame = dreamTitleFrame;
+    
     _dreamDescription.attributedText = [[NSAttributedString alloc]
                               initWithData: [_currentDream.dreamDescription dataUsingEncoding:NSUnicodeStringEncoding]
                               options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType }
                               documentAttributes: nil
                               error: nil];
-//    _dreamDescription.text = text;
     [_dreamDescription sizeToFit];
     CGRect descriptionFrame = _dreamDescription.frame;
     descriptionFrame.origin.y = dreamTitleFrame.origin.y + dreamTitleFrame.size.height + 6;
@@ -97,27 +91,18 @@
     progressModuleFrame.origin.y = descriptionFrame.origin.y + descriptionFrame.size.height;
     self.progressModule.frame = progressModuleFrame;
     
-    CGRect estimateFrame = _estimate.frame;
-    estimateFrame.origin.y = progressModuleFrame.origin.y + progressModuleFrame.size.height;
-    _estimate.frame = estimateFrame;
-    
-    CGRect participantsFrame = _participants.frame;
-    participantsFrame.origin.y = estimateFrame.origin.y + estimateFrame.size.height;
-    _participants.frame = participantsFrame;
-    
     scrollViewFrame.size.height = [self countTotalHeight];
     [(UIScrollView *)self.view setContentSize:scrollViewFrame.size];
 }
 
 - (float) countTotalHeight {
-    return _dreamPoster.frame.size.height +
-        _authorName.frame.size.height +
-        _dreamTitle.frame.size.height +
-        _border.frame.size.height +
-        _dreamDescription.frame.size.height +
-        _progressModule.frame.size.height +
-        _participants.frame.size.height +
-        _estimate.frame.size.height + 60;
+    return _dreamPoster.frame.size.height
+        + _authorName.frame.size.height
+        + _dreamTitle.frame.size.height
+        + _border.frame.size.height
+        + _dreamDescription.frame.size.height
+        + _progressModule.frame.size.height
+        + 60;
 }
 
 - (void)didReceiveMemoryWarning {

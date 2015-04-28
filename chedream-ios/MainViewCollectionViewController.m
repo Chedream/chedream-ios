@@ -32,13 +32,6 @@
 
 static NSString * const reuseIdentifier = @"MainViewCell";
 
-//-(void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-//    layout.itemSize = CGSizeMake(160, 180);
-//    
-//    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-//}
 
 - (IBAction)onMenuTap:(id)sender {
     if (self.isOpened) {
@@ -94,9 +87,7 @@ static NSString * const reuseIdentifier = @"MainViewCell";
     if([AFNetworkReachabilityManager sharedManager].reachable ){
         
         NSLog(@"%@",@"is reachable");
-        
     }else{
-        
         NSLog(@"%@",@"not reachable");
         
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No connection" message:@"Check your Internet connection" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
@@ -104,7 +95,6 @@ static NSString * const reuseIdentifier = @"MainViewCell";
 //        [alert show];
         return;
     }
-    
 }
 
 - (void)getDreams{
@@ -154,49 +144,56 @@ static NSString * const reuseIdentifier = @"MainViewCell";
     [cell.poster sd_setImageWithURL:[NSURL URLWithString:dreamByIndex.posterLink]
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     cell.title.text = [dreamByIndex title];
-//    
-//    float buttonWidth = cell.three.frame.size.width;
-//
-//    float single = cell.frame.size.width/2 - buttonWidth/2;
-//    [cell.three setTitle:@"button" forState:UIControlStateNormal];
-    
-   // NSLog(@" string  %@",dreamByIndex.financialProgress);
-    
-    
-    
-   
-    float countedProgress = [self getFloatValue: dreamByIndex.equipmentProgress];
-    if (countedProgress == 0.999) {
+
+    float countedEQProgress = [self getFloatValue: dreamByIndex.equipmentProgress];
+    if (countedEQProgress == 1) {
         cell.equipmentProgress.tintColor = [UIColor orangeColor];
+        cell.equipmentProgress.progress = 0.999;
+
     } else {
         cell.equipmentProgress.tintColor = [UIColor blackColor];
+        cell.equipmentProgress.progress = countedEQProgress;
+
     }
-    cell.equipmentProgress.progress = countedProgress;
     
-    
-    if (dreamByIndex.workProgress) {
-        
-        cell.workProgress.progress = [self getFloatValue:dreamByIndex.workProgress];
-        cell.workProgress.tintColor = [UIColor blackColor];
-    } else {
-        cell.financialProgress.progress = 0.999f;
+    float countedFINProgress = [self getFloatValue: dreamByIndex.financialProgress];
+    if (countedFINProgress == 1) {
         cell.financialProgress.tintColor = [UIColor orangeColor];
+        cell.financialProgress.progress = 0.999;
+
+    } else {
+        cell.financialProgress.tintColor = [UIColor blackColor];
+        cell.financialProgress.progress = countedFINProgress;
+
     }
     
- 
+    float countedWORKProgress = [self getFloatValue: dreamByIndex.workProgress];
+    if (countedWORKProgress == 1) {
+        cell.workProgress.tintColor = [UIColor orangeColor];
+        cell.workProgress.progress = 0.999;
+
+    } else {
+        cell.workProgress.tintColor = [UIColor blackColor];
+        cell.workProgress.progress = countedWORKProgress;
+
+    }
     
     return cell;
 }
 
 - (float)getFloatValue:(NSString*)string
 
-{   float result = 0.999;
-    int intV = [string intValue];
-    if (intV < 100)
-    {
-        result = (float)intV / 100;
+{   float result = 1;
+    if (string) {
+        int intV = [string intValue];
+        if (intV < 100)
+        {
+            result = (float)intV / 100;
+        }
     }
-    return result;}
+
+    return result;
+}
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -210,6 +207,8 @@ static NSString * const reuseIdentifier = @"MainViewCell";
     return CGSizeMake(CGRectGetWidth(collectionView.frame)/2 -1, CGRectGetWidth(collectionView.frame)* 0.60-1);
 }
 
+
+ #pragma mark - Navigation
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //    if ([segue.identifier isEqualToString:@"showDreamDetails"]) {
 //        NSIndexPath *indexPath = [[self.collectionView indexPathsForSelectedItems] objectAtIndex:0];
@@ -218,15 +217,5 @@ static NSString * const reuseIdentifier = @"MainViewCell";
 //        destViewController.currentDream = [dreams objectAtIndex:indexPath.row];
 //    }
 //}
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

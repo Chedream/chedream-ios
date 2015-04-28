@@ -17,7 +17,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+//    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
 }
 
 - (void)viewDidLoad {
