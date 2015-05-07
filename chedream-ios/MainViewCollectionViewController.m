@@ -16,13 +16,17 @@
 
 
 
-@interface MainViewCollectionViewController () {
+@interface MainViewCollectionViewController () <UISearchBarDelegate> {
     NSMutableArray *dreams;
+    NSArray *dreamsSorted;
 }
 
 @property (nonatomic, assign) BOOL isOpened;
 @property (nonatomic,assign,readwrite) BOOL isServerReachable;
+@property (strong,nonatomic) IBOutlet UISearchBar *searchBar;
+@property (nonatomic) BOOL searchBarActive;
 
+- (IBAction)searchButton:(id)sender;
 - (IBAction)onMenuTap:(id)sender;
 
 @end
@@ -33,6 +37,18 @@
 static NSString * const reuseIdentifier = @"MainViewCell";
 
 
+- (IBAction)searchButton:(id)sender {
+    
+    if (!self.searchBar) {
+        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
+        [self.searchBar setDelegate:self];
+        [self.searchBar setPlaceholder:@"search for a dream"];
+        //self.searchBar.barStyle = UIBarStyleBlackTranslucent;
+        [[self navigationItem] setTitleView:self.searchBar];
+    }
+    
+}
+
 - (IBAction)onMenuTap:(id)sender {
     if (self.isOpened) {
         [self.slidingViewController resetTopViewAnimated:YES];
@@ -42,15 +58,72 @@ static NSString * const reuseIdentifier = @"MainViewCell";
     self.isOpened = !self.isOpened;
 }
 
+#pragma mark - search
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"self.title contains[c] %@", searchText];
+    
+    dreamsSorted = nil;
+    dreamsSorted  = [dreams filteredArrayUsingPredicate:resultPredicate];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    // user did type something, check our datasource for text that looks the same
+    if (searchText.length>0) {
+        // search and reload data source
+        self.searchBarActive = YES;
+        [self filterContentForSearchText:searchText scope:[[self.searchBar scopeButtonTitles] objectAtIndex:[self.searchBar selectedScopeButtonIndex]]];
+        [self.collectionView reloadData];
+    }else{
+        // if text lenght == 0
+        // we will consider the searchbar is not active
+        self.searchBarActive = NO;
+    }
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [self cancelSearching];
+    [self.collectionView reloadData];
+    self.searchBar.text  = @"";
+    
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    self.searchBarActive = YES;
+    [self.view endEditing:YES];
+}
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    // we used here to set self.searchBarActive = YES
+    // but we'll not do that any more... it made problems
+    // it's better to set self.searchBarActive = YES when user typed something
+    [self.searchBar setShowsCancelButton:YES animated:YES];
+}
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    // this method is being called when search btn in the keyboard tapped
+    // we set searchBarActive = NO
+    // but no need to reloadCollectionView
+    self.searchBarActive = NO;
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+}
+-(void)cancelSearching{
+    self.searchBarActive = NO;
+    [self.searchBar resignFirstResponder];
+    self.searchBar.text  = @"";
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     dreams = [NSMutableArray array];
     [self.collectionView registerNib:[UINib nibWithNibName:reuseIdentifier
                                                     bundle:[NSBundle mainBundle]]
-                        forCellWithReuseIdentifier:reuseIdentifier];
-    
+          forCellWithReuseIdentifier:reuseIdentifier];
     [self getDreams];
+    
+    
+    
+    
+   
     
     
 #pragma network state changing inspector (realtime)
@@ -132,6 +205,10 @@ static NSString * const reuseIdentifier = @"MainViewCell";
 
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+        if (self.searchBarActive) {
+            return dreamsSorted.count;
+        }
     return dreams.count;
 }
 
@@ -139,7 +216,14 @@ static NSString * const reuseIdentifier = @"MainViewCell";
     
     MainViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 
-    Dream *dreamByIndex = dreams[indexPath.row];
+    Dream *dreamByIndex = nil;
+    
+    if (self.searchBarActive) {
+        dreamByIndex = dreamsSorted[indexPath.row];
+        
+    } else {
+        dreamByIndex = dreams[indexPath.row];
+    }
     
     [cell.poster sd_setImageWithURL:[NSURL URLWithString:dreamByIndex.posterLink]
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
@@ -178,6 +262,8 @@ static NSString * const reuseIdentifier = @"MainViewCell";
 
     }
     
+    
+    
     return cell;
 }
 
@@ -198,9 +284,17 @@ static NSString * const reuseIdentifier = @"MainViewCell";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DetailsViewController *details = [[DetailsViewController alloc] initWithNibName:@"DetailsViewController" bundle:nil];
-    details.currentDream = [dreams objectAtIndex:indexPath.row];
+    
+    if (self.searchBarActive) {
+        details.currentDream = [dreamsSorted objectAtIndex:indexPath.row];
+    } else {
+        details.currentDream = [dreams objectAtIndex:indexPath.row];
+    }
     
     [self.navigationController pushViewController:details animated:YES];
+    self.searchBarActive = NO;
+    self.searchBar.text  = @"";
+    [self.collectionView reloadData];
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
